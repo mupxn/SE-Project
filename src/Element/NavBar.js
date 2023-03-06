@@ -11,7 +11,7 @@ export const NavBar = ()=>{
     return(
     <Navbar bg="light" sticky="top"expand="md" variant="light">
         <Container fluid>
-            <Navbar.Brand><babel style={BrandStyle1}>Pimpakarn Project</babel></Navbar.Brand>
+            <Navbar.Brand><babel style={BrandStyle1}>Salad Online</babel></Navbar.Brand>
             <Navbar.Collapse >
                 <Nav className="me-auto">
                     <Nav.Link href="/">Home</Nav.Link>
