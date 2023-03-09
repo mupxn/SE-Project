@@ -53,16 +53,7 @@ function PricingContent() {
           <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
            History
           </Typography>
-          <nav>
-            <Link
-              variant="button"
-              color="text.primary"
-              href="AlertOrder"
-              sx={{ my: 1, mx: 1.5 }}
-            >
-              การแจ้งเตือน
-            </Link>
-          </nav>
+
           
           <Link
               variant="button"
