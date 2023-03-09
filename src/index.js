@@ -19,11 +19,20 @@ import { BrowserRouter,Route,Routes } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
   
   
+  <BrowserRouter>
+      <Routes>
+        {/* Customer */}
+      <Route path="/Login-Customer" element={<LoginCus/>} />
+      {/* //Employees// */ }
+      <Route path="/OrderEM" element={<OrderEM/>} />
+      <Route path="/LoginEM" element={<LoginEM/>} />
+      <Route path="/Statistics" element={<Statistics/>} />
+      <Route path="/AlertOrder" element={<AlertOrder/>} />
+      <Route path="/History" element={<History/>} />
+    </Routes>
+  </BrowserRouter>
 
 );
 

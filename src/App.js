@@ -27,6 +27,7 @@ function App() {
           </Routes>
         </Router>
       </ShopContextProvider>
+      
       <Router>
       <Routes>
         {/* Customer */}
@@ -40,6 +41,7 @@ function App() {
       </Routes>
       </Router>
     </div>
+    
   );
 }
 
