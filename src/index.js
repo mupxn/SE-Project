@@ -19,14 +19,17 @@ import { BrowserRouter,Route,Routes } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+  
+  
   <BrowserRouter> 
     <Routes>
+      
       <Route path="/" element={<App/>} />
 
       {/* Customer */}
       <Route path="/Login-Customer" element={<LoginCus/>} />
 
-      {/* //Employees// */}
+      {/* //Employees// */ }
       <Route path="/OrderEM" element={<OrderEM/>} />
       <Route path="/LoginEM" element={<LoginEM/>} />
       <Route path="/Statistics" element={<Statistics/>} />
@@ -34,6 +37,7 @@ root.render(
       <Route path="/History" element={<History/>} />
     </Routes>
 </BrowserRouter>
+
 );
 
 // If you want to start measuring performance in your app, pass a function
