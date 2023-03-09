@@ -10,6 +10,8 @@ import Statistics from './Employees/Statistics';
 import AlertOrder from './Employees/AlertOrder';
 import History from './Employees/History';
 
+import LoginCus from './Customer/LoginCus';
+
 
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter,Route,Routes } from "react-router-dom";
@@ -21,7 +23,8 @@ root.render(
     <Routes>
       <Route path="/" element={<App/>} />
 
-
+      {/* Customer */}
+      <Route path="/Login-Customer" element={<LoginCus/>} />
 
       {/* //Employees// */}
       <Route path="/OrderEM" element={<OrderEM/>} />
