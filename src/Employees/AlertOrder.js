@@ -47,14 +47,7 @@ function PricingContent() {
           </Typography>
           <nav>
           </nav>
-          <Link
-              variant="button"
-              color="text.primary"
-              href="History"
-              sx={{ my: 1, mx: 1.5 }}
-            >
-              ประวัติ
-            </Link>
+
           <Link
               variant="button"
               color="text.primary"
