@@ -11,6 +11,7 @@ import AlertOrder from './Employees/AlertOrder';
 import History from './Employees/History';
 
 import LoginCus from './Customer/LoginCus';
+import SignUp from './Customer/signup';
 
 
 import reportWebVitals from './reportWebVitals';
@@ -20,11 +21,11 @@ import { BrowserRouter,Route,Routes } from "react-router-dom";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   
-  
   <BrowserRouter>
       <Routes>
         {/* Customer */}
-      <Route path="/Login-Customer" element={<LoginCus/>} />
+      <Route path="/login" element={<LoginCus/>} />
+      <Route path="/signup" element={<SignUp/>} />
       {/* //Employees// */ }
       <Route path="/OrderEM" element={<OrderEM/>} />
       <Route path="/LoginEM" element={<LoginEM/>} />
