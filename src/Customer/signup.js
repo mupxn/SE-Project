@@ -50,6 +50,7 @@ export default function SignUp() {
   .then(data => {
     if(data.status === 'ok'){
       alert('sign up success')
+      window.location='/login'
     }else{
         alert('sign up failed')
     }
