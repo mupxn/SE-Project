@@ -8,28 +8,9 @@ import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import Container from '@mui/material/Container';
+//import Button from 'react-bootstrap/Button';
 
-const tiers = [
-  {
-    title: 'Ordernum',
-    price: '10',
-    Name: 'Tayida',
-    buttonVariant: 'outlined',
-  },
-  {
-    title: 'Pro',
-    subheader: 'Most popular',
-    price: '15',
-    buttonText: 'Get started',
-    buttonVariant: 'contained',
-  },
-  {
-    title: 'Enterprise',
-    price: '30',
-    buttonText: 'Contact us',
-    buttonVariant: 'outlined',
-  },
-];
+
 
 function PricingContent() {
   return (
@@ -80,26 +61,12 @@ function PricingContent() {
         >
           Queue
         </Typography>
-
       </Container>
-      {/* End hero unit */}
-      <Container maxWidth="md" component="main" align="center">
-        <div container spacing={5} align="center">
-          {tiers.map((tier) => (
-            // Enterprise card is full width at sm breakpoint
-            <Grid
-              md={9} 
-              align='center'
-            >
-            
-                  
-            </Grid>
-          ))}
-        </div>
-      </Container>
-      {/* Footer */}
-     
     </React.Fragment>
+
+    
+
+
   );
 }
 
