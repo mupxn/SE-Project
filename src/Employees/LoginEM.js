@@ -25,7 +25,7 @@ export default function SignInSide() {
         email: data.get('email'),
         password: data.get('password'),
     }
-    fetch("http://localhost:3333/login", {
+    fetch("http://localhost:3332/login", {
     method: "POST", // or 'PUT'
     headers: {
         "Content-Type": "application/json",
