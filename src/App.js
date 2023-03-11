@@ -11,6 +11,7 @@ import LoginEM from './Employees/LoginEM';
 import Statistics from './Employees/Statistics';
 import AlertOrder from './Employees/AlertOrder';
 import History from './Employees/History';
+import SignUp from './Customer/signup';
 
 import LoginCus from './Customer/LoginCus';
 
@@ -41,6 +42,21 @@ function App() {
   }, [])*/
   return (
     <div className="App">
+      <Router>
+      <Routes>
+        {/* Customer */}
+      <Route path="/login" element={<LoginCus/>} />
+      <Route path="/signup" element={<SignUp/>} />
+      <Route path="/" element={<LoginCus/>} />
+      <Route path="/home" element={<App/>} />
+      {/* //Employees// */ }
+      <Route path="/OrderEM" element={<OrderEM/>} />
+      <Route path="/LoginEM" element={<LoginEM/>} />
+      <Route path="/Statistics" element={<Statistics/>} />
+      <Route path="/AlertOrder" element={<AlertOrder/>} />
+      <Route path="/History" element={<History/>} />
+    </Routes>
+  </Router>
       <ShopContextProvider>
         <Router>
           <Navbar />
@@ -52,6 +68,8 @@ function App() {
         </Router>
       </ShopContextProvider>
     </div>
+    
+    
   );
 }
 

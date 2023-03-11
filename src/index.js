@@ -21,21 +21,9 @@ import { BrowserRouter,Route,Routes } from "react-router-dom";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   
-  <BrowserRouter>
-      <Routes>
-        {/* Customer */}
-      <Route path="/login" element={<LoginCus/>} />
-      <Route path="/signup" element={<SignUp/>} />
-      <Route path="/" element={<LoginCus/>} />
-      <Route path="/home" element={<App/>} />
-      {/* //Employees// */ }
-      <Route path="/OrderEM" element={<OrderEM/>} />
-      <Route path="/LoginEM" element={<LoginEM/>} />
-      <Route path="/Statistics" element={<Statistics/>} />
-      <Route path="/AlertOrder" element={<AlertOrder/>} />
-      <Route path="/History" element={<History/>} />
-    </Routes>
-  </BrowserRouter>
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
 
 );
 
