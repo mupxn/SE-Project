@@ -2,8 +2,9 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
-import Badge from 'react-bootstrap/Badge';
-import OrderDetails from './OrderDetails';
+import LoginIcon from '@mui/icons-material/Login';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import HistoryIcon from '@mui/icons-material/History';
 function OrderEM() {
   return (
     <>
@@ -15,9 +16,9 @@ function OrderEM() {
           <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end"></Navbar.Collapse>
           <Nav className="me-auto">
-            <Nav.Link href="AlertOrder" >alert</Nav.Link>
-            <Nav.Link href="History">history</Nav.Link>
-            <Button variant="outline-primary" href="LoginEM">login</Button>{' '}
+            <Nav.Link href="AlertOrder" ><NotificationsIcon/></Nav.Link>
+            <Nav.Link href="History"><HistoryIcon/></Nav.Link>
+            <Nav.Link href="LoginEM" ><LoginIcon/></Nav.Link>
             
           </Nav>
         </Container>
