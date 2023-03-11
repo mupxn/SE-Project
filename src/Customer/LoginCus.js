@@ -52,7 +52,7 @@ export default function SignInSide() {
     if(data.status === 'ok'){
       //alert('login success')
       localStorage.setItem('token', data.token)
-      window.location = '/'
+      window.location = '/home'
     }else{
         alert('login failed')
     }

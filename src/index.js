@@ -26,6 +26,8 @@ root.render(
         {/* Customer */}
       <Route path="/login" element={<LoginCus/>} />
       <Route path="/signup" element={<SignUp/>} />
+      <Route path="/" element={<LoginCus/>} />
+      <Route path="/home" element={<App/>} />
       {/* //Employees// */ }
       <Route path="/OrderEM" element={<OrderEM/>} />
       <Route path="/LoginEM" element={<LoginEM/>} />

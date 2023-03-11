@@ -32,7 +32,7 @@ function App() {
       }else{
           alert('authen failed')
           localStorage.removeItem('token')
-          window.location = '/Login-Customer'
+          window.location = '/login'
       }
     })
     .catch((error) => {
@@ -41,31 +41,8 @@ function App() {
   }, [])*/
   return (
     <div className="App">
-      <ShopContextProvider>
-        <Router>
           <Navbar/>
-          <Routes>
-            <Route path="/" element={<Shop />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/cart" element={<Cart />} />
-          </Routes>
-        </Router>
-      </ShopContextProvider>
-      
-      <Router>
-      <Routes>
-        {/* Customer */}
-      <Route path="/login-customer" element={<LoginCus/>} />
-      {/* //Employees// */ }
-      <Route path="/OrderEM" element={<OrderEM/>} />
-      <Route path="/LoginEM" element={<LoginEM/>} />
-      <Route path="/Statistics" element={<Statistics/>} />
-      <Route path="/AlertOrder" element={<AlertOrder/>} />
-      <Route path="/History" element={<History/>} />
-      </Routes>
-      </Router>
     </div>
-    
   );
 }
 
