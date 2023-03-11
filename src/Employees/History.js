@@ -2,7 +2,10 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
-import Badge from 'react-bootstrap/Badge';
+import LoginIcon from '@mui/icons-material/Login';
+import HistoryIcon from '@mui/icons-material/History';
+
+import HomeIcon from '@mui/icons-material/Home';
 function History() {
   return (
     <>
@@ -14,8 +17,8 @@ function History() {
           <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end"></Navbar.Collapse>
           <Nav className="me-auto">
-            <Nav.Link href="OrderEM" >home</Nav.Link>
-            <Button variant="outline-primary" href="LoginEM">login</Button>{' '}
+          <Nav.Link href="OrderEM" > <HomeIcon/></Nav.Link>
+          <Nav.Link href="LoginEM" ><LoginIcon/></Nav.Link>
             
           </Nav>
         </Container>
