@@ -3,7 +3,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import Badge from 'react-bootstrap/Badge';
-function ColorSchemesExample() {
+function OrderEM() {
   return (
     <>
       <Navbar bg="light" sticky="top"expand="md" variant="light">
@@ -34,4 +34,4 @@ function ColorSchemesExample() {
   );
 }
 
-export default ColorSchemesExample;
+export default OrderEM;
