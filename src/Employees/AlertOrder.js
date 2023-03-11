@@ -14,8 +14,8 @@ function AlertOrder() {
             <h3>AlertOrder</h3>
           </Navbar.Brand>
           <Navbar.Toggle />
-        <Navbar.Collapse className="justify-content-end"></Navbar.Collapse>
-          <Nav className="me-auto">
+        
+          <Nav className="justify-content-right">
             <Nav.Link href="OrderEM" > <HomeIcon/></Nav.Link>
             <Nav.Link href="LoginEM" ><LoginIcon/></Nav.Link>
             
