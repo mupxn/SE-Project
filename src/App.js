@@ -42,7 +42,7 @@ function App() {
   }, [])*/
   return (
     <div className="App">
-      <Router>
+      <BrowserRouter>
       <Routes>
         {/* Customer */}
       <Route path="/login" element={<LoginCus/>} />
@@ -56,7 +56,7 @@ function App() {
       <Route path="/History" element={<History/>} />
       <Route path="/OrderDetails" element={<OrderDetails/>} />
     </Routes>
-  </Router>
+  </BrowserRouter>
       <ShopContextProvider>
         <Router>
           <Navbar />
@@ -68,8 +68,6 @@ function App() {
         </Router>
       </ShopContextProvider>
     </div>
-    
-    
   );
 }
 
