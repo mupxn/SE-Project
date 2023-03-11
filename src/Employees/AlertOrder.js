@@ -3,6 +3,8 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import Badge from 'react-bootstrap/Badge';
+import HomeIcon from '@mui/icons-material/Home';
+import LoginIcon from '@mui/icons-material/Login';
 function AlertOrder() {
   return (
     <>
@@ -14,8 +16,8 @@ function AlertOrder() {
           <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end"></Navbar.Collapse>
           <Nav className="me-auto">
-            <Nav.Link href="OrderEM" >home</Nav.Link>
-            <Button variant="outline-primary" href="LoginEM">login</Button>{' '}
+            <Nav.Link href="OrderEM" > <HomeIcon/></Nav.Link>
+            <Nav.Link href="LoginEM" ><LoginIcon/></Nav.Link>
             
           </Nav>
         </Container>
