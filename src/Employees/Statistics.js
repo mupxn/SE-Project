@@ -63,7 +63,7 @@ export default function Album() {
       <CssBaseline />
       <AppBar position="relative">
         <Toolbar>
-          <CameraIcon sx={{ mr: 2 }} />
+          <CameraIcon sx={{ mr: 1 }} />
           <Typography variant="h6" color="inherit" noWrap>
             Album layout
           </Typography>
