@@ -3,6 +3,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import Badge from 'react-bootstrap/Badge';
+import OrderDetails from './OrderDetails';
 function OrderEM() {
   return (
     <>
@@ -26,8 +27,18 @@ function OrderEM() {
         <h5 >Queue</h5>
       </div>
       <div className="d-grid gap-2">
-      <Button variant="light" size="lg">test</Button>
-    </div>
+      <Button variant="light" size="lg" href="OrderDetails">
+        <header variant="left">Order number : 11000</header> 
+        <text> tayida chomsong</text>
+      </Button>
+      </div>
+      <br/>
+      <div className="d-grid gap-2">
+      <Button variant="light" size="lg" href="OrderDetails">
+        <header variant="left">Order number : 11000</header> 
+        <text> tayida chomsong</text>
+      </Button>
+      </div>
 
     </>
     
