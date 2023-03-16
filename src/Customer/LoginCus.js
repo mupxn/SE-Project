@@ -53,7 +53,13 @@ export default function SignInSide() {
       //alert('login success')
       localStorage.setItem('token', data.token)
       window.location = '/shop'
-    }else{
+    } 
+    else if(data.status === 'okadmin'){
+      //alert('login success')
+      localStorage.setItem('token', data.token)
+      window.location = '/Statistics'
+    }
+    else{
         alert('login failed')
     }
   })
