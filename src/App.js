@@ -42,7 +42,7 @@ function App() {
   }, [])*/
   return (
     <div className="App">
-      <BrowserRouter>
+      <Router>
       <Routes>
         {/* Customer */}
       <Route path="/login" element={<LoginCus/>} />
@@ -54,12 +54,10 @@ function App() {
       <Route path="/Statistics" element={<Statistics/>} />
       <Route path="/AlertOrder" element={<AlertOrder/>} />
       <Route path="/History" element={<History/>} />
-      <Route path="/OrderDetails" element={<OrderDetails/>} />
     </Routes>
-  </BrowserRouter>
+  </Router>
       <ShopContextProvider>
         <Router>
-          <Navbar />
           <Routes>
             <Route path="/shop" element={<Shop />} />
             <Route path="/contact" element={<Contact />} />
@@ -68,6 +66,8 @@ function App() {
         </Router>
       </ShopContextProvider>
     </div>
+    
+    
   );
 }
 
