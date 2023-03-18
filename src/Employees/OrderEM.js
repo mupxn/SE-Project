@@ -1,3 +1,4 @@
+
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -5,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import LoginIcon from '@mui/icons-material/Login';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import HistoryIcon from '@mui/icons-material/History';
+import Divider from '@mui/material/Divider';
 
 import { useState } from "react";
 import Axios from "axios";
@@ -13,22 +15,20 @@ function OrderEM() {
   const [menu, setMenu] = useState([]);
   const [order, setOrder] = useState([]);
 
-  const getUser = () => {
+
     Axios.get("http://localhost:3333/user").then((response) => {
       setUser(response.data);
     });
-  };
-  const getMenu = () => {
     Axios.get("http://localhost:3333/menu").then((response) => {
       setMenu(response.data);
     });
-  };
+
 
     Axios.get("http://localhost:3333/order").then((response) => {
       setOrder(response.data);
     });
 
-
+    
   return (
     <>
       <Navbar bg="dark" variant="dark" sticky="top"expand="md" >
@@ -77,7 +77,7 @@ function OrderEM() {
           return (
             <div className="menu card" >
               <div className="card-body text-left">
-              <p className="card-text">MenuNo: {val.menuID}</p>
+              <p>Menu: {val.menuName}</p>
               </div>
             </div>
             );
@@ -85,19 +85,32 @@ function OrderEM() {
         </div>
 
  */}
- 
           {/* ดึงorder */}
-        {order.map((val) => {
-          return (
-            <div className="order card " >
-              <p align='left'>OrderNo: {val.orderNo}</p>
-              <p>OrderID: {val.orderID}</p>
-              <p>user_id : {val.user_id }</p>
-              <p>menuID: {val.menuID} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {val.quantity}</p>
-              <p>TotalPrice: {val.TotalPrice}</p>
-              </div>
-            );
-          })}
+          <div elevation={3} >
+            {order.map((val) => {
+              return (
+                <div>
+                  <p align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OrderNo: {val.orderNo}</p>
+                  <p>OrderID: {val.orderID}</p>
+                  <p>user_id : {val.user_id }</p>
+                  <p>menuID: {val.menuID}
+                  {/* {menu.map((val,key) => {
+                  return (
+                      <p>Menu: {val.menuName}</p>
+                    );
+                  })} */}
+                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {val.quantity}</p>
+                  <p>TotalPrice: {val.TotalPrice}</p>
+                  <Button size="30">Small</Button>
+                  <br></br><br></br>
+                  <Divider size="5"></Divider>
+                  </div>
+                  
+                );
+                
+            })}
+          </div>
+        
 
 
 
