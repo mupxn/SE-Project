@@ -9,7 +9,7 @@ import HomeIcon from '@mui/icons-material/Home';
 function History() {
   return (
     <>
-      <Navbar bg="light" sticky="top"expand="md" variant="light">
+       <Navbar bg="dark" variant="dark" sticky="top"expand="md" >
         <Container>
           <Navbar.Brand >
             <h3>History</h3>
