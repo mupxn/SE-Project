@@ -8,7 +8,7 @@ import Badge from 'react-bootstrap/Badge';
 function OrderDetails() {
   return (
     <>
-      <Navbar bg="light" sticky="top"expand="md" variant="light">
+       <Navbar bg="dark" variant="dark" sticky="top"expand="md" >
         <Container>
           <Navbar.Brand >
             <h3>OrderDetails</h3>
