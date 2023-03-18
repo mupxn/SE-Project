@@ -8,7 +8,7 @@ import LoginIcon from '@mui/icons-material/Login';
 function AlertOrder() {
   return (
     <>
-      <Navbar bg="light" sticky="top"expand="md" variant="light">
+       <Navbar bg="dark" variant="dark" sticky="top"expand="md" >
         <Container>
           <Navbar.Brand >
             <h3>AlertOrder</h3>
