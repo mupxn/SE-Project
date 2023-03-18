@@ -11,6 +11,7 @@ import Axios from "axios";
 function OrderEM() {
   const [user, setUser] = useState([]);
   const [menu, setMenu] = useState([]);
+  const [order, setOrder] = useState([]);
 
   const getUser = () => {
     Axios.get("http://localhost:3333/user").then((response) => {
@@ -22,7 +23,12 @@ function OrderEM() {
       setMenu(response.data);
     });
   };
-  
+
+    Axios.get("http://localhost:3333/order").then((response) => {
+      setOrder(response.data);
+    });
+
+
   return (
     <>
       <Navbar bg="dark" variant="dark" sticky="top"expand="md" >
@@ -41,13 +47,13 @@ function OrderEM() {
       </Navbar>
       
 
-      <div className="user">
+      {/* <div className="user">
         <button class="btn btn-primary" onClick={getUser}>
           Show Employees
         </button>
         <br />
         <br />
-        {user.map((val, data) => {
+        {user.map((val) => {
           return (
             <div className="user card" >
               <div className="card-body text-left">
@@ -60,24 +66,41 @@ function OrderEM() {
             );
           })}
         </div>
+
         <div className="menu">
         <button class="btn btn-primary" onClick={getMenu}>
           Show menu
         </button>
         <br />
         <br />
-        {menu.map((val, key) => {
+        {menu.map((val,key) => {
           return (
             <div className="menu card" >
               <div className="card-body text-left">
-              <p className="card-text" >menuID: {val.menuID}</p>
-                <p className="card-text">menuName: {val.menuName}</p>
-                <p className="card-text">menuPrice: {val.menuPrice}</p>
+              <p className="card-text">MenuNo: {val.menuID}</p>
               </div>
             </div>
             );
           })}
         </div>
+
+ */}
+ 
+          {/* ดึงorder */}
+        {order.map((val) => {
+          return (
+            <div className="order card " >
+              <p align='left'>OrderNo: {val.orderNo}</p>
+              <p>OrderID: {val.orderID}</p>
+              <p>user_id : {val.user_id }</p>
+              <p>menuID: {val.menuID} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {val.quantity}</p>
+              <p>TotalPrice: {val.TotalPrice}</p>
+              </div>
+            );
+          })}
+
+
+
     </>
     
     
