@@ -28,13 +28,13 @@ body: JSON.stringify(jsonData),
 export const PRODUCTS = [
 
   {
-    id: '01M',
+    id: 1,
     productName: "สลัดผัก",
     price: 45.0,
     productImage: product1,
   },
   {
-    id: '02M',
+    id: 2,
     productName: "สลัดโรลปูอัด",
     price: 45.0,
     productImage: product2,
