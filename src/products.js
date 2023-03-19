@@ -1,15 +1,15 @@
-import product1 from "./assets/products/z9.jpg";
-import product2 from "./assets/products/z8.jpg";
-import product3 from "./assets/products/z7.jpg";
-import product4 from "./assets/products/z6.jpg";
-import product5 from "./assets/products/z5.jpg";
-import product6 from "./assets/products/z4.jpg";
-import product7 from "./assets/products/z3.jpg";
-import product8 from "./assets/products/z2.jpg";
-import product9 from "./assets/products/z1.jpg";
+import product1 from "./assets/products/p1.jpg";
+import product2 from "./assets/products/p2.jpg";
+import product3 from "./assets/products/p3.jpg";
+import product4 from "./assets/products/p4.jpg";
+import product5 from "./assets/products/p5.jpg";
+import product6 from "./assets/products/p6.jpg";
+import product7 from "./assets/products/7.webp";
+import product8 from "./assets/products/8.webp";
 
 
 export const PRODUCTS = [
+
   {
     id: 1,
     productName: "สลัดผัก",

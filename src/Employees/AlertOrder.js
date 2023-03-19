@@ -1,87 +1,38 @@
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Link from '@mui/material/Link';
-import GlobalStyles from '@mui/material/GlobalStyles';
-import Container from '@mui/material/Container';
-
-const tiers = [
-  {
-    title: 'Ordernum',
-    price: '10',
-    Name: 'Tayida',
-    buttonVariant: 'outlined',
-  },
-  {
-    title: 'Pro',
-    subheader: 'Most popular',
-    price: '15',
-    buttonText: 'Get started',
-    buttonVariant: 'contained',
-  },
-  {
-    title: 'Enterprise',
-    price: '30',
-    buttonText: 'Contact us',
-    buttonVariant: 'outlined',
-  },
-];
-
-function PricingContent() {
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import Button from 'react-bootstrap/Button';
+import Badge from 'react-bootstrap/Badge';
+import HomeIcon from '@mui/icons-material/Home';
+import LoginIcon from '@mui/icons-material/Login';
+function AlertOrder() {
   return (
-    <React.Fragment>
-      <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }} />
-      <CssBaseline />
-      <AppBar
-        position="static"
-        color="default"
-        elevation={0}
-        sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
-      >
-        <Toolbar sx={{ flexWrap: 'wrap' }}>
-          <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
-          การแจ้งเตือน
-          </Typography>
-          <nav>
-          </nav>
-
-          <Link
-              variant="button"
-              color="text.primary"
-              href="OrderEM"
-              sx={{ my: 1, mx: 1.5 }}
-            >
-              Home
-            </Link>
-            <Button href="LoginEM" variant="outlined" sx={{ my: 1, mx: 1.5 }}>
-            เข้าสู่ระบบ
-          </Button>
-        </Toolbar>
-      </AppBar>
-      {/* Hero unit */}
-      <Container disableGutters maxWidth="sm" component="main" sx={{ pt: 8, pb: 6 }}>
-        <Typography
-          component="h5"
-          variant="h5"
-          align="center"
-          color="text.primary"
-          gutterBottom
-        >
-          Order alert
-        </Typography>
-
-      </Container>
-      {/* End hero unit */}
-      
-      {/* Footer */}
-     
-    </React.Fragment>
+    <>
+       <Navbar bg="dark" variant="dark" sticky="top"expand="md" >
+        <Container>
+          <Navbar.Brand >
+            <h3>AlertOrder</h3>
+          </Navbar.Brand>
+          <Navbar.Toggle />
+        
+          <Nav className="justify-content-right">
+            <Nav.Link href="OrderEM" > <HomeIcon/></Nav.Link>
+            <Nav.Link href="/" ><LoginIcon/></Nav.Link>
+            
+          </Nav>
+        </Container>
+      </Navbar>
+      <br/>
+      <div align="center" >
+        <h5 >Order</h5>
+      </div>
+      <div className="d-grid gap-2" >
+      <Button variant="light" size="lg" ><h6 align='left'>OrderNumber : 1212312121</h6><br/> Tayida Capybara<br/>Details<br/></Button>
+    </div>
+    <br/>
+    </>
+    
   );
 }
 
-export default function Pricing() {
-  return <PricingContent />;
-}
+export default AlertOrder;

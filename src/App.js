@@ -12,7 +12,6 @@ import Statistics from './Employees/Statistics';
 import AlertOrder from './Employees/AlertOrder';
 import History from './Employees/History';
 import SignUp from './Customer/signup';
-import { Checkout } from './pages/checkout/checkout';
 
 import LoginCus from './Customer/LoginCus';
 
@@ -59,7 +58,7 @@ function App() {
   </Router>
       <ShopContextProvider>
         <Router>
-          
+          <Navbar />
           <Routes>
             <Route path="/shop" element={<Shop />} />
             <Route path="/status" element={<Status />} />
