@@ -7,14 +7,59 @@ import LoginIcon from '@mui/icons-material/Login';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import HistoryIcon from '@mui/icons-material/History';
 import Divider from '@mui/material/Divider';
-
+import HourglassTopRoundedIcon from '@mui/icons-material/HourglassTopRounded';
+import InventoryRoundedIcon from '@mui/icons-material/InventoryRounded';
+import LocalDiningRoundedIcon from '@mui/icons-material/LocalDiningRounded';
+import AssignmentTurnedInRoundedIcon from '@mui/icons-material/AssignmentTurnedInRounded';
+import KeyboardDoubleArrowRightRoundedIcon from '@mui/icons-material/KeyboardDoubleArrowRightRounded';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import Chip from '@mui/material/Chip';
 import { useState } from "react";
 import Axios from "axios";
+
+import Box from '@mui/material/Box';
+import Fab from '@mui/material/Fab';
+import AddIcon from '@mui/icons-material/Add';
+import EditIcon from '@mui/icons-material/Edit';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import NavigationIcon from '@mui/icons-material/Navigation';
+
 function OrderEM() {
   const [user, setUser] = useState([]);
   const [menu, setMenu] = useState([]);
   const [order, setOrder] = useState([]);
+  const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
+  const theme = createTheme({
+    components: {
+      MuiIcon: {
+        styleOverrides: {
+          root: {
+            // Match 24px = 3 * 2 + 1.125 * 16
+            boxSizing: 'content-box',
+            padding: 3,
+            fontSize: '1.125rem',
+            co:'green'
+          },
+        },
+      },
+    },
+  });
+  const newtheme = createTheme({
+    components: {
+      MuiIcon: {
+        styleOverrides: {
+          root: {
+            // Match 24px = 3 * 2 + 1.125 * 16
+            boxSizing: 'content-box',
+            padding: 3,
+            fontSize: '1.125rem',
+            color:'green'
+          },
+        },
+      },
+    },
+  });
 
     Axios.get("http://localhost:3333/user").then((response) => {
       setUser(response.data);
@@ -86,24 +131,67 @@ function OrderEM() {
 
  */}
           {/* ดึงorder */}
-          <div elevation={3} >
+          <div >
             {order.map((val) => {
               return (
-                <div>
-                  <p align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OrderNo: {val.orderNo}</p>
-                  <p>OrderID: {val.orderID}</p>
+                <div >
+                  <br></br>
+                  <p align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OrderNo: {val.orderNo}
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  OrderID: {val.orderID}</p>
                   <p>user_id : {val.user_id }</p>
-                  <p>menuID: {val.menuID}
-                  {/* {menu.map((val,key) => {
+                  {/* {user.map((a) => {
                   return (
-                      <p>Menu: {val.menuName}</p>
+                      <div>
+                      <p> {a.fname} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {val.lname}</p>
+                      </div>
                     );
                   })} */}
+                  <p>menuID: {val.menuID}
                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {val.quantity}</p>
                   <p>TotalPrice: {val.TotalPrice}</p>
-                  <Button size="30">Small</Button>
                   <br></br><br></br>
-                  <Divider size="5"></Divider>
+                  <ThemeProvider theme={theme}>
+                    <Chip icon={<HourglassTopRoundedIcon />} label="รอยืนยันคำสั่งซื้อ" />
+                  </ThemeProvider>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <KeyboardDoubleArrowRightRoundedIcon/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <ThemeProvider theme={theme}>
+                    <Chip icon={<InventoryRoundedIcon />} label="ยืนยันคำสั่งซื้อ" />
+                  </ThemeProvider>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <KeyboardDoubleArrowRightRoundedIcon/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <ThemeProvider theme={theme}>
+                    <Chip icon={<LocalDiningRoundedIcon />} label="กำลังเตรียม" />
+                  </ThemeProvider>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <KeyboardDoubleArrowRightRoundedIcon/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <ThemeProvider theme={theme}>
+                    <Chip icon={<AssignmentTurnedInRoundedIcon />} label="เสร็จสิ้น" />
+                  </ThemeProvider>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  
+                  <Box sx={{ m: 5}}>
+                    <Fab variant="extended" onChange={newtheme}>
+                      <HourglassTopRoundedIcon sx={{ mr: 1}} />
+                      รอยืนยันคำสั่งซื้อ
+                    </Fab>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <Fab variant="extended"  href="History" >
+                      <InventoryRoundedIcon sx={{ mr: 1 }} />
+                      ยืนยันคำสั่งซื้อ
+                    </Fab>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <Fab variant="extended"  href="History" >
+                      <LocalDiningRoundedIcon sx={{ mr: 1 }} />
+                      กำลังเตรียม
+                    </Fab>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <Fab variant="extended"  href="History" >
+                      <AssignmentTurnedInRoundedIcon sx={{ mr: 1 }} />
+                      เสร็จสิ้น
+                    </Fab>
+                  </Box>
+
+                  <Divider size="10"></Divider>
+
                   </div>
                   
                 );
