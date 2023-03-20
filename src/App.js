@@ -5,6 +5,7 @@ import { Shop } from "./pages/shop/shop";
 import { Status } from './pages/status';
 import { Cart } from "./pages/cart/cart";
 import { ShopContextProvider } from "./context/shop-context";
+import { Checkout } from './pages/checkout/checkout';
 import { Browser } from 'phosphor-react';
 import OrderEM from './Employees/OrderEM';
 import LoginEM from './Employees/LoginEM';
@@ -58,7 +59,7 @@ function App() {
   </Router>
       <ShopContextProvider>
         <Router>
-          <Navbar />
+          
           <Routes>
             <Route path="/shop" element={<Shop />} />
             <Route path="/status" element={<Status />} />
