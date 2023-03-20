@@ -168,27 +168,6 @@ function OrderEM() {
                     <Chip icon={<AssignmentTurnedInRoundedIcon />} label="เสร็จสิ้น" />
                   </ThemeProvider>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   
-                  <Box sx={{ m: 5}}>
-                    <Fab variant="extended" onChange={newtheme}>
-                      <HourglassTopRoundedIcon sx={{ mr: 1}} />
-                      รอยืนยันคำสั่งซื้อ
-                    </Fab>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <Fab variant="extended"  href="History" >
-                      <InventoryRoundedIcon sx={{ mr: 1 }} />
-                      ยืนยันคำสั่งซื้อ
-                    </Fab>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <Fab variant="extended"  href="History" >
-                      <LocalDiningRoundedIcon sx={{ mr: 1 }} />
-                      กำลังเตรียม
-                    </Fab>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <Fab variant="extended"  href="History" >
-                      <AssignmentTurnedInRoundedIcon sx={{ mr: 1 }} />
-                      เสร็จสิ้น
-                    </Fab>
-                  </Box>
 
                   <Divider size="10"></Divider>
 
