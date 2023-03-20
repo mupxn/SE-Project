@@ -13,6 +13,7 @@ export const Cart = () => {
 
   return (
     <div className="cart">
+      <Navbar/>
       <div>
         <h1>Your Cart Items</h1>
       </div>
