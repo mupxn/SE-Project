@@ -4,6 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import LoginIcon from '@mui/icons-material/Login';
 import HistoryIcon from '@mui/icons-material/History';
+import OrderDetails from './OrderDetails';
 
 import HomeIcon from '@mui/icons-material/Home';
 function History() {
@@ -26,7 +27,7 @@ function History() {
         <h5 >Order History</h5>
       </div>
       <div className="d-grid gap-2">
-      <Button variant="light" size="lg">test</Button>
+      <OrderDetails/>
     </div>
 
     </>
