@@ -12,54 +12,44 @@ import InventoryRoundedIcon from '@mui/icons-material/InventoryRounded';
 import LocalDiningRoundedIcon from '@mui/icons-material/LocalDiningRounded';
 import AssignmentTurnedInRoundedIcon from '@mui/icons-material/AssignmentTurnedInRounded';
 import KeyboardDoubleArrowRightRoundedIcon from '@mui/icons-material/KeyboardDoubleArrowRightRounded';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+
 import Chip from '@mui/material/Chip';
 import { useState } from "react";
 import Axios from "axios";
 
-import Box from '@mui/material/Box';
-import Fab from '@mui/material/Fab';
-import AddIcon from '@mui/icons-material/Add';
-import EditIcon from '@mui/icons-material/Edit';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import NavigationIcon from '@mui/icons-material/Navigation';
+import React from 'react';
+import OrderDetails from './OrderDetails';
+
+function ColorButton() {
+  const [isClicked, setIsClicked] = useState(false);
+
+  return (
+    <Chip
+      style={{ backgroundColor: isClicked ? "green" : "lightgray" }}
+      onClick={() => setIsClicked(!isClicked)}
+    >
+    </Chip>
+  );
+}
+
 
 function OrderEM() {
   const [user, setUser] = useState([]);
   const [menu, setMenu] = useState([]);
   const [order, setOrder] = useState([]);
-  const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
-  const theme = createTheme({
-    components: {
-      MuiIcon: {
-        styleOverrides: {
-          root: {
-            // Match 24px = 3 * 2 + 1.125 * 16
-            boxSizing: 'content-box',
-            padding: 3,
-            fontSize: '1.125rem',
-            co:'green'
-          },
-        },
-      },
-    },
-  });
-  const newtheme = createTheme({
-    components: {
-      MuiIcon: {
-        styleOverrides: {
-          root: {
-            // Match 24px = 3 * 2 + 1.125 * 16
-            boxSizing: 'content-box',
-            padding: 3,
-            fontSize: '1.125rem',
-            color:'green'
-          },
-        },
-      },
-    },
-  });
+  
+  const myStyle = {
+    color: "white",
+    backgroundColor: "green"
+  };
+  const myStyle2 = {
+    fontFamily: "Sans-Serif"
+  };
+  const myStyle3 = {
+    fontFamily: "Sans-Serif",
+    backgroundColor: "pink"
+  };
 
     Axios.get("http://localhost:3333/user").then((response) => {
       setUser(response.data);
@@ -76,10 +66,11 @@ function OrderEM() {
     
   return (
     <>
+
       <Navbar bg="dark" variant="dark" sticky="top"expand="md" >
         <Container>
           <Navbar.Brand >
-            <h3>Order</h3>
+            <h3 style={myStyle2} >Order</h3>
           </Navbar.Brand>
           <Navbar.Toggle />
            <Nav className="justify-content-right">
@@ -131,56 +122,48 @@ function OrderEM() {
 
  */}
           {/* ดึงorder */}
-          <div >
+          {/* <OrderDetails /> */}
+          
             {order.map((val) => {
               return (
-                <div >
+                <div style={myStyle2} >
                   <br></br>
-                  <p align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OrderNo: {val.orderNo}
+                  <p align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                  OrderNo: {val.orderNo}
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  OrderID: {val.orderID}</p>
-                  <p>user_id : {val.user_id }</p>
-                  {/* {user.map((a) => {
-                  return (
-                      <div>
-                      <p> {a.fname} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {val.lname}</p>
-                      </div>
-                    );
-                  })} */}
+                  OrderID: {val.orderID} </p>
+                  <p style={myStyle2} >user_id : {val.user_id }</p>
                   <p>menuID: {val.menuID}
                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {val.quantity}</p>
                   <p>TotalPrice: {val.TotalPrice}</p>
                   <br></br><br></br>
-                  <ThemeProvider theme={theme}>
-                    <Chip icon={<HourglassTopRoundedIcon />} label="รอยืนยันคำสั่งซื้อ" />
-                  </ThemeProvider>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <KeyboardDoubleArrowRightRoundedIcon/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <ThemeProvider theme={theme}>
-                    <Chip icon={<InventoryRoundedIcon />} label="ยืนยันคำสั่งซื้อ" />
-                  </ThemeProvider>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <KeyboardDoubleArrowRightRoundedIcon/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <ThemeProvider theme={theme}>
-                    <Chip icon={<LocalDiningRoundedIcon />} label="กำลังเตรียม" />
-                  </ThemeProvider>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <KeyboardDoubleArrowRightRoundedIcon/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <ThemeProvider theme={theme}>
-                    <Chip icon={<AssignmentTurnedInRoundedIcon />} label="เสร็จสิ้น" />
-                  </ThemeProvider>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  
+                
+                  {/* style={{backgroundColor: "lightblue"}}   */}
 
-                  <Divider size="10"></Divider>
+                  <ColorButton>
+                  <Chip icon={<HourglassTopRoundedIcon/>}  label="รอยืนยันคำสั่งซื้อ"  /></ColorButton> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  
+                  
+                  <KeyboardDoubleArrowRightRoundedIcon/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <Chip icon={<InventoryRoundedIcon  />} label="ยืนยันคำสั่งซื้อ"  />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <KeyboardDoubleArrowRightRoundedIcon /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <Chip icon={<LocalDiningRoundedIcon />} label="กำลังเตรียม" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <KeyboardDoubleArrowRightRoundedIcon/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <Chip icon={<AssignmentTurnedInRoundedIcon />} label="เสร็จสิ้น" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                 
+                  
+                 <div>
+                </div>
+                  <Divider size="10px"></Divider>
 
                   </div>
                   
                 );
                 
             })}
-          </div>
-        
-
-
-
+          
+         
     </>
     
     
