@@ -13,24 +13,10 @@ import LocalDiningRoundedIcon from '@mui/icons-material/LocalDiningRounded';
 import AssignmentTurnedInRoundedIcon from '@mui/icons-material/AssignmentTurnedInRounded';
 import KeyboardDoubleArrowRightRoundedIcon from '@mui/icons-material/KeyboardDoubleArrowRightRounded';
 
-import Chip from '@mui/material/Chip';
 import { useState } from "react";
 import Axios from "axios";
-
 import React from 'react';
-import OrderDetails from './OrderDetails';
 
-function ColorButton() {
-  const [isClicked, setIsClicked] = useState(false);
-
-  return (
-    <Chip
-      style={{ backgroundColor: isClicked ? "green" : "lightgray" }}
-      onClick={() => setIsClicked(!isClicked)}
-    >
-    </Chip>
-  );
-}
 
 
 function OrderEM() {
@@ -38,31 +24,48 @@ function OrderEM() {
   const [menu, setMenu] = useState([]);
   const [order, setOrder] = useState([]);
 
+
+  const [status, setStatus] = useState("");
+  const [newstatus, setNewStatus] = useState( );
   
   const myStyle = {
     color: "white",
     backgroundColor: "green"
   };
   const myStyle2 = {
-    fontFamily: "Sans-Serif"
+    fontFamily: "Sans-Serif",
+    padding : "40px"
   };
   const myStyle3 = {
     fontFamily: "Sans-Serif",
     backgroundColor: "pink"
   };
 
-    Axios.get("http://localhost:3333/user").then((response) => {
-      setUser(response.data);
-    });
-    Axios.get("http://localhost:3333/menu").then((response) => {
-      setMenu(response.data);
-    });
-
-
-    Axios.get("http://localhost:3333/order").then((response) => {
+  Axios.get("http://localhost:3333/order").then((response) => {
       setOrder(response.data);
     });
 
+  const updateStatus = (id) => {
+      Axios.put("http://localhost:3333/update", { status: "เสร็จสิ้น" , orderID: id }).then(
+        (response) => {
+          setOrder(
+            order.map((val) => {
+              return val.orderID == id
+                ? {
+                    orderID: val.orderID ,
+                    amount: val.amount,
+                    TotalPrice: val.TotalPrice,
+                    status: status,
+                    user_id: val.user_id,
+                    
+                  }
+                : val;
+            })
+          );
+        }
+      );
+    };
+  
     
   return (
     <>
@@ -82,45 +85,6 @@ function OrderEM() {
         </Container>
       </Navbar>
       
-
-      {/* <div className="user">
-        <button class="btn btn-primary" onClick={getUser}>
-          Show Employees
-        </button>
-        <br />
-        <br />
-        {user.map((val) => {
-          return (
-            <div className="user card" >
-              <div className="card-body text-left">
-              <p className="card-text" >ID: {val.id}</p>
-                <p className="card-text">Name: {val.fname}</p>
-                <p className="card-text">LastName: {val.lname}</p>
-                <p className="card-text">Phone: {val.number}</p>
-              </div>
-            </div>
-            );
-          })}
-        </div>
-
-        <div className="menu">
-        <button class="btn btn-primary" onClick={getMenu}>
-          Show menu
-        </button>
-        <br />
-        <br />
-        {menu.map((val,key) => {
-          return (
-            <div className="menu card" >
-              <div className="card-body text-left">
-              <p>Menu: {val.menuName}</p>
-              </div>
-            </div>
-            );
-          })}
-        </div>
-
- */}
           {/* ดึงorder */}
           {/* <OrderDetails /> */}
           
@@ -128,33 +92,24 @@ function OrderEM() {
               return (
                 <div style={myStyle2} >
                   <br></br>
-                  <p align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                  OrderNo: {val.orderNo}
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  OrderID: {val.orderID} </p>
-                  <p style={myStyle2} >user_id : {val.user_id }</p>
-                  <p>menuID: {val.menuID}
-                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {val.quantity}</p>
-                  <p>TotalPrice: {val.TotalPrice}</p>
-                  <br></br><br></br>
-                
-                  {/* style={{backgroundColor: "lightblue"}}   */}
-
-                  <ColorButton>
-                  <Chip icon={<HourglassTopRoundedIcon/>}  label="รอยืนยันคำสั่งซื้อ"  /></ColorButton> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  
-                  
+                  <text style={myStyle2} > OrderID: {val.orderID} </text>
+                  <text style={myStyle2} >amount : {val.amount }</text>
+                  <text style={myStyle2} >TotalPrice: {val.TotalPrice}</text>
+                  <text style={myStyle2} >{val.status}</text>
+{/*                    
+                  <Chip icon={<HourglassTopRoundedIcon/>}  label="รอยืนยันคำสั่งซื้อ"  />
                   <KeyboardDoubleArrowRightRoundedIcon/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <Chip icon={<InventoryRoundedIcon  />} label="ยืนยันคำสั่งซื้อ"  />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <KeyboardDoubleArrowRightRoundedIcon /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <Chip icon={<LocalDiningRoundedIcon />} label="กำลังเตรียม" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <KeyboardDoubleArrowRightRoundedIcon/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <Chip icon={<AssignmentTurnedInRoundedIcon />} label="เสร็จสิ้น" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                 
+                   */}
                   
-                 <div>
-                </div>
+                  <button className="btn btn-warning" 
+                  // onChange={() => setNewStatus('p')}  
+                  onClick={() => {updateStatus(val.orderID)}}>Update</button>
+                 
                   <Divider size="10px"></Divider>
 
                   </div>
@@ -162,7 +117,6 @@ function OrderEM() {
                 );
                 
             })}
-          
          
     </>
     
