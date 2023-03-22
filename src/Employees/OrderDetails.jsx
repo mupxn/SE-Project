@@ -6,34 +6,31 @@ import { useState } from "react";
 import Axios from "axios";
 
 function OrderDetails(props) {
-  const [order, setOrder] = useState([]);
-  Axios.get("http://localhost:3333/order").then((response) => {
-    setOrder(response.data);
+  const myStyle2 = {
+    fontFamily: "Sans-Serif",
+    padding : "40px"
+  };
+  const [orderconfirmation, setorderconfirmation] = useState([]);
+  Axios.get("http://localhost:3333/orderconfirmation").then((response) => {
+    setorderconfirmation(response.data);
   });
   const [count, setCount] = useState(0);
-
+  
   return (
           <div >
-            {/* <div>
+            <div>
           <p>You clicked {count} times</p>
           <button onClick={() => setCount(count + 1)}>
             Click me
           </button>
-        </div> */}
-            {order.map((val) => {
+        </div> */
+          {orderconfirmation.map((val) => { 
               return (
                 <div>
-                  <br></br>
-                  <p align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                  OrderNo: {val.orderNo}
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  OrderID: {val.orderID} </p>
-                  <p >user_id : {val.user_id }</p>
-                  <p>menuID: {val.menuID}
-                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {val.quantity}</p>
-                  <p>TotalPrice: {val.TotalPrice}</p>
-                  <br></br><br></br>
+                  <text style={myStyle2} > OrderID: {val.orderID} </text>
+                  <text style={myStyle2} >amount : {val.amount }</text>
+                  <text style={myStyle2} >TotalPrice: {val.TotalPrice}</text>
+                  <text style={myStyle2} >{val.status}</text>
                   </div>
                   
                 );
