@@ -5,7 +5,18 @@ import Button from 'react-bootstrap/Button';
 import Badge from 'react-bootstrap/Badge';
 import HomeIcon from '@mui/icons-material/Home';
 import LoginIcon from '@mui/icons-material/Login';
+import OrderDetails from './OrderDetails';
+
+import { useState } from "react";
+import Axios from "axios";
+
 function AlertOrder() {
+  const [order, setOrder] = useState([]);
+  Axios.get("http://localhost:3333/order").then((response) => {
+    setOrder(response.data);
+  });
+
+
   return (
     <>
        <Navbar bg="dark" variant="dark" sticky="top"expand="md" >
@@ -26,9 +37,8 @@ function AlertOrder() {
       <div align="center" >
         <h5 >Order</h5>
       </div>
-      <div className="d-grid gap-2" >
-      <Button variant="light" size="lg" ><h6 align='left'>OrderNumber : 1212312121</h6><br/> Tayida Capybara<br/>Details<br/></Button>
-    </div>
+      {/* *********** */}
+      <OrderDetails/>
     <br/>
     </>
     
