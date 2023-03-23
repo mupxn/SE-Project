@@ -1,47 +1,44 @@
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { useState } from "react";
-import Axios from "axios";
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Alert from '@mui/material/Alert';
+import IconButton from '@mui/material/IconButton';
+import Collapse from '@mui/material/Collapse';
+import Button from '@mui/material/Button';
+import CloseIcon from '@mui/icons-material/Close';
 
-function OrderDetails(props) {
-  const myStyle2 = {
-    fontFamily: "Sans-Serif",
-    padding : "40px"
-  };
-  const [orderconfirmation, setorderconfirmation] = useState([]);
-  Axios.get("http://localhost:3333/orderconfirmation").then((response) => {
-    setorderconfirmation(response.data);
-  });
-  const [count, setCount] = useState(0);
-  
+export default function OrderDetaisl(props) {
+  const [open, setOpen] = React.useState(true);
+
   return (
-          <div >
-            <div>
-          <p>You clicked {count} times</p>
-          <button onClick={() => setCount(count + 1)}>
-            Click me
-          </button>
-        </div> */
-          {orderconfirmation.map((val) => { 
-              return (
-                <div>
-                  <text style={myStyle2} > OrderID: {val.orderID} </text>
-                  <text style={myStyle2} >amount : {val.amount }</text>
-                  <text style={myStyle2} >TotalPrice: {val.TotalPrice}</text>
-                  <text style={myStyle2} >{val.status}</text>
-                  </div>
-                  
-                );
-                
-            })}
-          </div>
-    
+    <Box sx={{ width: '100%' }}>
+      <Collapse in={open}>
+        <Alert
+          action={
+            <IconButton
+              aria-label="close"
+              color="inherit"
+              size="small"
+              onClick={() => {
+                setOpen(false);
+              }}
+            >
+              <CloseIcon fontSize="inherit" />
+            </IconButton>
+          }
+          sx={{ mb: 2 }}
+        >
+          Close me!
+        </Alert>
+      </Collapse>
+      <Button
+        disabled={open}
+        variant="outlined"
+        onClick={() => {
+          setOpen(true);
+        }}
+      >
+        Re-open
+      </Button>
+    </Box>
   );
 }
-OrderDetails.defaultProps = {
-  text: "Feedback UI",
-}
-
-export default OrderDetails;
