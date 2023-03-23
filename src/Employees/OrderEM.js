@@ -12,10 +12,19 @@ import InventoryRoundedIcon from '@mui/icons-material/InventoryRounded';
 import LocalDiningRoundedIcon from '@mui/icons-material/LocalDiningRounded';
 import AssignmentTurnedInRoundedIcon from '@mui/icons-material/AssignmentTurnedInRounded';
 import KeyboardDoubleArrowRightRoundedIcon from '@mui/icons-material/KeyboardDoubleArrowRightRounded';
+import { Chip } from '@mui/material';
+
+import Badge from '@mui/material/Badge';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
+
+import IconButton from '@mui/material/IconButton';
+import ListAltIcon from '@mui/icons-material/ListAlt';
 
 import { useState } from "react";
 import Axios from "axios";
 import React from 'react';
+import { Margin } from '@mui/icons-material';
 
 
 
@@ -23,14 +32,20 @@ function OrderEM() {
   const [user, setUser] = useState([]);
   const [menu, setMenu] = useState([]);
   const [order, setOrder] = useState([]);
+  const [orderalert, setorderalert] = useState([]);
 
 
   const [status, setStatus] = useState("");
   const [newstatus, setNewStatus] = useState( );
+  const [orderdetail, setorderdetail] = useState([]);
   
-  const myStyle = {
-    color: "white",
-    backgroundColor: "green"
+
+
+  const myStyle1 = {
+    fontFamily: "Sans-Serif",
+    padding : "10px",
+    backgroundColor : "lightblue"
+    
   };
   const myStyle2 = {
     fontFamily: "Sans-Serif",
@@ -38,7 +53,6 @@ function OrderEM() {
   };
   const myStyle3 = {
     fontFamily: "Sans-Serif",
-    backgroundColor: "pink"
   };
 
   Axios.get("http://localhost:3333/order").then((response) => {
@@ -65,7 +79,18 @@ function OrderEM() {
         }
       );
     };
-  
+    const Orderdetail = (id) => {
+      Axios.get("http://localhost:3333/orderdetail", {orderID: id }).then(
+        (response) => {
+          setorderdetail(response.data);
+          
+        });
+    };
+    Axios.get("http://localhost:3333/orderalert").then((response) => {
+      setorderalert(response.data);
+    });
+
+
     
   return (
     <>
@@ -77,7 +102,22 @@ function OrderEM() {
           </Navbar.Brand>
           <Navbar.Toggle />
            <Nav className="justify-content-right">
-            <Nav.Link href="AlertOrder" ><NotificationsIcon/></Nav.Link>
+
+           {orderalert.map((val) => {
+              return (
+                <div >
+                  <Badge badgeContent={val.AlertOrder} color="primary">
+                    <Nav.Link href="AlertOrder" ><NotificationsIcon/></Nav.Link>
+                  </Badge>
+            
+                  </div>
+                  
+                );
+                
+            })}
+
+           
+            {/* <Nav.Link href="AlertOrder" ><NotificationsIcon/></Nav.Link> */}
             <Nav.Link href="History" ><HistoryIcon/></Nav.Link>
             <Nav.Link href="/" ><LoginIcon/></Nav.Link>
             
@@ -95,8 +135,24 @@ function OrderEM() {
                   <text style={myStyle2} > OrderID: {val.orderID} </text>
                   <text style={myStyle2} >amount : {val.amount }</text>
                   <text style={myStyle2} >TotalPrice: {val.TotalPrice}</text>
-                  <text style={myStyle2} >{val.status}</text>
-{/*                    
+                  <IconButton color='success'
+                  onClick={() => {Orderdetail(val.orderID)}} ><ListAltIcon/></IconButton>
+                 
+                 <text style={{padding:"30px"}} >
+                 <b><Chip color='success' label={val.status}  ></Chip></b>
+                 </text>
+
+                 <text style={myStyle1} fontSize={10} >
+                    <CircularProgress size={15}/>  &nbsp;
+                    กำลังเตรียม
+                  </text> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                   
+                 
+                 
+                  
+                 
+                  
+{/*                                      
                   <Chip icon={<HourglassTopRoundedIcon/>}  label="รอยืนยันคำสั่งซื้อ"  />
                   <KeyboardDoubleArrowRightRoundedIcon/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <Chip icon={<InventoryRoundedIcon  />} label="ยืนยันคำสั่งซื้อ"  />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -106,17 +162,18 @@ function OrderEM() {
                   <Chip icon={<AssignmentTurnedInRoundedIcon />} label="เสร็จสิ้น" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                    */}
                   
-                  <button className="btn btn-warning" 
-                  // onChange={() => setNewStatus('p')}  
-                  onClick={() => {updateStatus(val.orderID)}}>Update</button>
-                 
-                  <Divider size="10px"></Divider>
+                    
 
+                  <button className="btn btn-warning " 
+                  onClick={() => {updateStatus(val.orderID)}}>Update</button>
+                  <Divider size="10px"></Divider>
                   </div>
                   
                 );
                 
             })}
+
+            
          
     </>
     
