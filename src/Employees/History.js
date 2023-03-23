@@ -48,7 +48,8 @@ function History() {
                   <text style={myStyle2} > OrderID: {val.orderID} </text>
                   <text style={myStyle2} >amount : {val.amount }</text>
                   <text style={myStyle2} >TotalPrice: {val.TotalPrice}</text>
-                  <Chip color='success' label="เสร็จสิ้น" ></Chip>
+                  <b><Chip color='success' label="เสร็จสิ้น" ></Chip></b>
+                  
                   <br></br><br></br>
                   <Divider size="10px"></Divider>
 
