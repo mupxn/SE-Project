@@ -8,6 +8,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import { useState } from "react";
 import Axios from "axios";
 import Divider from '@mui/material/Divider';
+import { Chip } from '@mui/material';
 
 function AlertOrder() {
   const [order, setOrder] = useState([]);
@@ -19,7 +20,8 @@ function AlertOrder() {
   Axios.get("http://localhost:3333/orderconfirmation").then((response) => {
       setOrder(response.data);
     });
-
+  
+    
   const updateStatus = (id) => {
     Axios.put("http://localhost:3333/update", { status: "ยืนยันคำสั่งซื้อ" , orderID: id }).then(
       (response) => {
@@ -72,7 +74,10 @@ function AlertOrder() {
                   <text style={myStyle2} > OrderID: {val.orderID} </text>
                   <text style={myStyle2} >amount : {val.amount }</text>
                   <text style={myStyle2} >TotalPrice: {val.TotalPrice}</text>
-                  <text style={myStyle2} >{val.status}</text>
+                  <text style={{padding:"30px"}} >
+                 <b><Chip color='error' label={val.status}  ></Chip></b>
+                 </text>
+                 
 {/*                    
                   <Chip icon={<HourglassTopRoundedIcon/>}  label="รอยืนยันคำสั่งซื้อ"  />
                   <KeyboardDoubleArrowRightRoundedIcon/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
