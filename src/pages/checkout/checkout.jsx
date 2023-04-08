@@ -1,13 +1,7 @@
 import React, { useState } from 'react'
 import { Navbar } from "../../components/navbar";
-<<<<<<< HEAD
-import axios from 'axios';
-//import RECIEPT from "./"
-// Get the file input element and the upload button
-
-=======
 import RECIEPT from "../../receipt/Owner.png"
->>>>>>> f457d63bde649bf8e80872fc1520b7de9ed8fef7
+import axios from 'axios';
 
 export const Checkout = () => {
   const [image , setImage] = useState('')
@@ -29,10 +23,11 @@ export const Checkout = () => {
       <Navbar/>
       <div>
         <h1>Please Scan QR Code</h1>
-        <input type="file" name='file' onChange={handleImage}/>
-        <button onClick={handleApi}>Submit</button>
+        <img src={RECIEPT} />
       </div>
-      <img src={RECIEPT} />
+      <h4>ส่งใบเสร็จชำระเงินที่นี่</h4>
+      <input type="file" name='file' onChange={handleImage}/>
+      <button onClick={handleApi}>Submit</button>
     </div>
     
   )
