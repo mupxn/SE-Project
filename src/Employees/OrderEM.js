@@ -158,17 +158,17 @@ function OrderEM() {
                   onClick={() => {Orderdetail(val.orderID)}} >
                   <ListAltIcon/>
                   </IconButton>
-                  <Dropdown>
-                  {/* <Dropdown.Toggle variant="success" id="dropdown-basic">
+                  {/* <Dropdown>
+                  <Dropdown.Toggle variant="success" id="dropdown-basic">
                   <ListAltIcon/>
-                  </Dropdown.Toggle> */}
+                  </Dropdown.Toggle>
 
                   <Dropdown.Menu>
                     <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
                     <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
                     <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
                   </Dropdown.Menu>
-                </Dropdown>
+                </Dropdown> */}
 
                  <text style={{padding:"30px"}} >
                  <b><Chip color='success' label={val.status} ></Chip></b>
