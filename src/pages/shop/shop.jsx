@@ -7,7 +7,7 @@ import { useEffect } from "react";
 
 
 export const Shop = () => {
-  useEffect(() => {
+  /*useEffect(() => {
     const token = localStorage.getItem("token");
     fetch("http://localhost:3333/authen", {
       method: "post",
@@ -30,7 +30,7 @@ export const Shop = () => {
       .catch((error) => {
         console.error("Error:", error);
       });
-  }, []);
+  }, []);*/
 
 
   return (

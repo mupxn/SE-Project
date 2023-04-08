@@ -51,6 +51,8 @@ export default function SignInSide() {
   .then(data => {
     if(data.status === 'ok'){
       alert('login success')
+      const userId = data.user.id;
+      localStorage.setItem('userId', userId);
       localStorage.setItem('token', data.token)
       window.location = '/shop'
     } 

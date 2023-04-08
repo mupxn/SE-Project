@@ -10,18 +10,44 @@ import { Product } from "../shop/product";
 
 
 export const Cart = () => {
+  const userId = localStorage.getItem('userId');
   const { cartItems, getTotalCartAmount, checkout } = useContext(ShopContext);
   const totalAmount = getTotalCartAmount();
   const navigate = useNavigate();
+  function fetchDetail() {
 
+    const data = {
+      menu_name	: "สลัดผัก",
+      price	: "45",
+      amount : "1",
+      menuID : "1",
+      orderID	 : "23"
+    };
+
+    
+    fetch('http://localhost:3333/order_detail', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+  }
 
   function fetchOrder() {
 
     const data = {
-      amount : 3,
-      TotalPrice : 400,
+      amount : totalAmount,
+      TotalPrice : totalAmount,
       status	: "รอยืนยันคำสั่งซื้อ" ,
-      user_id	: 21 
+      user_id	: userId
     };
 
 
@@ -54,8 +80,6 @@ export const Cart = () => {
           }
         })}
       </div>
-
-
       {totalAmount > 0 ? (
         <div className="checkout">
           <p> Subtotal: ${totalAmount} </p>
