@@ -8,28 +8,30 @@ import { useEffect } from "react";
 
 export const Shop = () => {
   useEffect(() => {
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem("token");
     fetch("http://localhost:3333/authen", {
-      method: "POST", // or 'PUT'
+      method: "post",
       headers: {
-      "Content-Type": "application/json",
-      'Authorization': 'Bearer'+token
-    },
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
     })
-    .then(response=> response.json())
-    .then(data => {
-      if(data.status === 'ok'){
-        alert('authen success')
-      }else{
-          alert('authen failed')
-          localStorage.removeItem('token')
-          window.location = '/login'
-      }
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-  }, [])
+      .then((response) => response.json())
+      .then((data) => {
+        //console.error('success:', data);
+        if (data.status == "ok") {
+          //alert('authen successfully')
+        } else {
+          alert("please login");
+          localStorage.removeItem("token");
+          window.location = "/";
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }, []);
+
 
   return (
     
