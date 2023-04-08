@@ -41,33 +41,6 @@ export const Cart = () => {
     });
   }
 
-  function fetchDetail() {
-
-    const data = {
-      menu_name	: "สลัดผัก",
-      price	: "45",
-      amount : "1",
-      menuID : "1",
-      orderID	 : "23"
-    };
-
-    
-    fetch('http://localhost:3333/order_detail', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Success:', data);
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
-  }
-
   return (
     <div className="cart">
       <Navbar/>
@@ -89,7 +62,6 @@ export const Cart = () => {
           <button onClick={() => navigate("/shop")}> Continue Shopping </button>
           <button id="check" onClick={() => {
               fetchOrder();
-              fetchDetail();
               checkout();
               navigate("/checkout");
             }}
