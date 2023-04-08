@@ -18,14 +18,14 @@ export const Cart = () => {
   function fetchOrder() {
 
     const data = {
-      amount : "3",
-      TotalPrice : "4",
+      amount : 3,
+      TotalPrice : 400,
       status	: "รอยืนยันคำสั่งซื้อ" ,
-      user_id	: "21" 
+      user_id	: 21 
     };
 
 
-    fetch('http://localhost:3333/order', {
+    fetch('http://localhost:3333/orderinput', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

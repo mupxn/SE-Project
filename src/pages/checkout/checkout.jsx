@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { Navbar } from "../../components/navbar";
-import Axios from "axios";
 import axios from 'axios';
 //import RECIEPT from "./"
 // Get the file input element and the upload button
@@ -17,6 +16,7 @@ export const Checkout = () => {
     const formData = new formData()
     formData.append('image',image)
     axios.post('url' , formData).then((res) => {
+      window.location = '/status'
       console.log(res)
     })
   }
