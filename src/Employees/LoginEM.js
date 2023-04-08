@@ -51,6 +51,19 @@ export default function SignInSide() {
     });
   };
 
+  function getUserData() {
+    const token = localStorage.getItem('token');
+  
+    fetch('/user-data', {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+    .then(response => response.json())
+    .then(data => {
+      // Update UI with user data
+    })
+    .catch(error => console.error(error));
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <Grid container component="main" sx={{ height: '100vh' }}>
