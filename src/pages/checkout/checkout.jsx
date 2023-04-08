@@ -1,9 +1,13 @@
 import React, { useState } from 'react'
 import { Navbar } from "../../components/navbar";
+<<<<<<< HEAD
 import axios from 'axios';
 //import RECIEPT from "./"
 // Get the file input element and the upload button
 
+=======
+import RECIEPT from "../../receipt/Owner.png"
+>>>>>>> f457d63bde649bf8e80872fc1520b7de9ed8fef7
 
 export const Checkout = () => {
   const [image , setImage] = useState('')
@@ -28,6 +32,7 @@ export const Checkout = () => {
         <input type="file" name='file' onChange={handleImage}/>
         <button onClick={handleApi}>Submit</button>
       </div>
+      <img src={RECIEPT} />
     </div>
     
   )
