@@ -8,21 +8,6 @@ import product6 from "./assets/products/p6.jpg";
 import product7 from "./assets/products/7.webp";
 import product8 from "./assets/products/8.webp";
 
-/*const handleSubmit = (event) => {
-  event.preventDefault();
-  const data = new FormData(event.currentTarget);
-  const jsonData = {
-    id: data.get('id'),
-  }
-
-  fetch("http://localhost:3333/menu", {
-  method: "POST", // or 'PUT'
-  headers: {
-  "Content-Type": "application/json",
-},
-body: JSON.stringify(jsonData),
-})
-};*/
 
 
 export const PRODUCTS = [
