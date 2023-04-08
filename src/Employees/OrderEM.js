@@ -7,38 +7,117 @@ import LoginIcon from '@mui/icons-material/Login';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import HistoryIcon from '@mui/icons-material/History';
 import Divider from '@mui/material/Divider';
+import HourglassTopRoundedIcon from '@mui/icons-material/HourglassTopRounded';
+import InventoryRoundedIcon from '@mui/icons-material/InventoryRounded';
+import LocalDiningRoundedIcon from '@mui/icons-material/LocalDiningRounded';
+import AssignmentTurnedInRoundedIcon from '@mui/icons-material/AssignmentTurnedInRounded';
+import KeyboardDoubleArrowRightRoundedIcon from '@mui/icons-material/KeyboardDoubleArrowRightRounded';
+import { Chip } from '@mui/material';
+
+import Badge from '@mui/material/Badge';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
+
+import IconButton from '@mui/material/IconButton';
+import ListAltIcon from '@mui/icons-material/ListAlt';
 
 import { useState } from "react";
 import Axios from "axios";
+import React from 'react';
+import { Margin } from '@mui/icons-material';
+
+
+
 function OrderEM() {
   const [user, setUser] = useState([]);
   const [menu, setMenu] = useState([]);
   const [order, setOrder] = useState([]);
+  const [orderalert, setorderalert] = useState([]);
 
 
-    Axios.get("http://localhost:3333/user").then((response) => {
-      setUser(response.data);
-    });
-    Axios.get("http://localhost:3333/menu").then((response) => {
-      setMenu(response.data);
-    });
+  const [status, setStatus] = useState("");
+  const [newstatus, setNewStatus] = useState( );
+  const [orderdetail, setorderdetail] = useState([]);
+  
 
 
-    Axios.get("http://localhost:3333/order").then((response) => {
+  const myStyle1 = {
+    fontFamily: "Sans-Serif",
+    padding : "10px",
+    backgroundColor : "lightblue"
+    
+  };
+  const myStyle2 = {
+    fontFamily: "Sans-Serif",
+    padding : "40px"
+  };
+  const myStyle3 = {
+    fontFamily: "Sans-Serif",
+  };
+
+  Axios.get("http://localhost:3333/order").then((response) => {
       setOrder(response.data);
     });
+
+  const updateStatus = (id) => {
+      Axios.put("http://localhost:3333/update", { status: "เสร็จสิ้น" , orderID: id }).then(
+        (response) => {
+          setOrder(
+            order.map((val) => {
+              return val.orderID == id
+                ? {
+                    orderID: val.orderID ,
+                    amount: val.amount,
+                    TotalPrice: val.TotalPrice,
+                    status: status,
+                    user_id: val.user_id,
+                    
+                  }
+                : val;
+            })
+          );
+        }
+      );
+    };
+    const Orderdetail = (id) => {
+      Axios.get("http://localhost:3333/orderdetail", {orderID: id }).then(
+        (response) => {
+          setorderdetail(response.data);
+          
+        });
+    };
+    Axios.get("http://localhost:3333/orderalert").then((response) => {
+      setorderalert(response.data);
+    });
+
 
     
   return (
     <>
+
       <Navbar bg="dark" variant="dark" sticky="top"expand="md" >
         <Container>
           <Navbar.Brand >
-            <h3>Order</h3>
+            <h3 style={myStyle2} >Order</h3>
           </Navbar.Brand>
           <Navbar.Toggle />
            <Nav className="justify-content-right">
-            <Nav.Link href="AlertOrder" ><NotificationsIcon/></Nav.Link>
+
+           {orderalert.map((val) => {
+              return (
+                <div >
+                  <Badge badgeContent={val.AlertOrder} color="primary">
+                    <Nav.Link href="AlertOrder" ><NotificationsIcon/></Nav.Link>
+                  </Badge>
+            
+                  </div>
+                  
+                );
+                
+            })}
+
+           
+            {/* <Nav.Link href="AlertOrder" ><NotificationsIcon/></Nav.Link> */}
             <Nav.Link href="History" ><HistoryIcon/></Nav.Link>
             <Nav.Link href="/" ><LoginIcon/></Nav.Link>
             
@@ -46,74 +125,56 @@ function OrderEM() {
         </Container>
       </Navbar>
       
-
-      {/* <div className="user">
-        <button class="btn btn-primary" onClick={getUser}>
-          Show Employees
-        </button>
-        <br />
-        <br />
-        {user.map((val) => {
-          return (
-            <div className="user card" >
-              <div className="card-body text-left">
-              <p className="card-text" >ID: {val.id}</p>
-                <p className="card-text">Name: {val.fname}</p>
-                <p className="card-text">LastName: {val.lname}</p>
-                <p className="card-text">Phone: {val.number}</p>
-              </div>
-            </div>
-            );
-          })}
-        </div>
-
-        <div className="menu">
-        <button class="btn btn-primary" onClick={getMenu}>
-          Show menu
-        </button>
-        <br />
-        <br />
-        {menu.map((val,key) => {
-          return (
-            <div className="menu card" >
-              <div className="card-body text-left">
-              <p>Menu: {val.menuName}</p>
-              </div>
-            </div>
-            );
-          })}
-        </div>
-
- */}
           {/* ดึงorder */}
-          <div elevation={3} >
+          {/* <OrderDetails /> */}
+          
             {order.map((val) => {
               return (
-                <div>
-                  <p align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OrderNo: {val.orderNo}</p>
-                  <p>OrderID: {val.orderID}</p>
-                  <p>user_id : {val.user_id }</p>
-                  <p>menuID: {val.menuID}
-                  {/* {menu.map((val,key) => {
-                  return (
-                      <p>Menu: {val.menuName}</p>
-                    );
-                  })} */}
-                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {val.quantity}</p>
-                  <p>TotalPrice: {val.TotalPrice}</p>
-                  <Button size="30">Small</Button>
-                  <br></br><br></br>
-                  <Divider size="5"></Divider>
+                <div style={myStyle2} >
+                  <br></br>
+                  <text style={myStyle2} > OrderID: {val.orderID} </text>
+                  <text style={myStyle2} >amount : {val.amount }</text>
+                  <text style={myStyle2} >TotalPrice: {val.TotalPrice}</text>
+                  <IconButton color='success'
+                  onClick={() => {Orderdetail(val.orderID)}} ><ListAltIcon/></IconButton>
+                 
+                 <text style={{padding:"30px"}} >
+                 <b><Chip color='success' label={val.status}  ></Chip></b>
+                 </text>
+
+                 <text style={myStyle1} fontSize={10} >
+                    <CircularProgress size={15}/>  &nbsp;
+                    กำลังเตรียม
+                  </text> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                   
+                 
+                 
+                  
+                 
+                  
+{/*                                      
+                  <Chip icon={<HourglassTopRoundedIcon/>}  label="รอยืนยันคำสั่งซื้อ"  />
+                  <KeyboardDoubleArrowRightRoundedIcon/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <Chip icon={<InventoryRoundedIcon  />} label="ยืนยันคำสั่งซื้อ"  />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <KeyboardDoubleArrowRightRoundedIcon /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <Chip icon={<LocalDiningRoundedIcon />} label="กำลังเตรียม" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <KeyboardDoubleArrowRightRoundedIcon/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <Chip icon={<AssignmentTurnedInRoundedIcon />} label="เสร็จสิ้น" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                   */}
+                  
+                    
+
+                  <button className="btn btn-warning " 
+                  onClick={() => {updateStatus(val.orderID)}}>Update</button>
+                  <Divider size="10px"></Divider>
                   </div>
                   
                 );
                 
             })}
-          </div>
-        
 
-
-
+            
+         
     </>
     
     

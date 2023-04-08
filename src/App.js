@@ -13,7 +13,7 @@ import Statistics from './Employees/Statistics';
 import AlertOrder from './Employees/AlertOrder';
 import History from './Employees/History';
 import SignUp from './Customer/signup';
-
+import OrderDetails from './Employees/OrderDetails';
 import LoginCus from './Customer/LoginCus';
 
 function App() {
@@ -55,6 +55,7 @@ function App() {
       <Route path="/Statistics" element={<Statistics/>} />
       <Route path="/AlertOrder" element={<AlertOrder/>} />
       <Route path="/History" element={<History/>} />
+      <Route path="/OrderDetails" element={<OrderDetails/>} />
     </Routes>
   </Router>
       <ShopContextProvider>

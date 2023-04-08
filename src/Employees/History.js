@@ -2,11 +2,25 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
-import LoginIcon from '@mui/icons-material/Login';
-import HistoryIcon from '@mui/icons-material/History';
-
+import Badge from 'react-bootstrap/Badge';
 import HomeIcon from '@mui/icons-material/Home';
+import LoginIcon from '@mui/icons-material/Login';
+import { useState } from "react";
+import Axios from "axios";
+import Divider from '@mui/material/Divider';
+import { Chip } from '@mui/material';
+
 function History() {
+
+  const [orderfinish, setorderfinish] = useState([]);
+  const myStyle2 = {
+    fontFamily: "Sans-Serif",
+    padding : "40px"
+  };
+  Axios.get("http://localhost:3333/orderfinish").then((response) => {
+    setorderfinish(response.data);
+    });
+
   return (
     <>
        <Navbar bg="dark" variant="dark" sticky="top"expand="md" >
@@ -26,8 +40,25 @@ function History() {
         <h5 >Order History</h5>
       </div>
       <div className="d-grid gap-2">
-      <Button variant="light" size="lg">test</Button>
     </div>
+    {orderfinish.map((val) => {
+              return (
+                <div style={myStyle2} >
+                  <br></br>
+                  <text style={myStyle2} > OrderID: {val.orderID} </text>
+                  <text style={myStyle2} >amount : {val.amount }</text>
+                  <text style={myStyle2} >TotalPrice: {val.TotalPrice}</text>
+                  <b><Chip color='success' label="เสร็จสิ้น" ></Chip></b>
+                  
+                  <br></br><br></br>
+                  <Divider size="10px"></Divider>
+
+
+                  </div>
+                  
+                );
+                
+            })}
 
     </>
     
