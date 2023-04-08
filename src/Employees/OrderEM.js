@@ -13,6 +13,7 @@ import LocalDiningRoundedIcon from '@mui/icons-material/LocalDiningRounded';
 import AssignmentTurnedInRoundedIcon from '@mui/icons-material/AssignmentTurnedInRounded';
 import KeyboardDoubleArrowRightRoundedIcon from '@mui/icons-material/KeyboardDoubleArrowRightRounded';
 import { Chip } from '@mui/material';
+import Dropdown from 'react-bootstrap/Dropdown';
 
 import Badge from '@mui/material/Badge';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -53,6 +54,10 @@ function OrderEM() {
   };
   const myStyle3 = {
     fontFamily: "Sans-Serif",
+    fontSize :"40px"
+  };
+  const myStyle4 = {
+    backgroundColor : "lightgreen"
   };
 
   Axios.get("http://localhost:3333/order").then((response) => {
@@ -79,12 +84,26 @@ function OrderEM() {
         }
       );
     };
-    const Orderdetail = (id) => {
-      Axios.get("http://localhost:3333/orderdetail", {orderID: id }).then(
-        (response) => {
-          setorderdetail(response.data);
+
+    // orderdetail.map((val) => {
+    //   return val.orderID == id (
+    //     <div style={myStyle2} >
+    //       <br></br>
+    //       <text style={myStyle2} > {val.menu_name} </text>
+    //       <text style={myStyle2} >price : {val.price } bath</text>
+    //       <text style={myStyle2} > amount: {val.amount}</text>
+    //       <Divider size="10px"></Divider>
+
+    //       </div>
           
-        });
+    //     );
+        
+    // })
+    const Orderdetail = (id) => {
+      Axios.get("http://localhost:3333/orderdetail", {orderID: id }).then((response) => {
+        setorderdetail(response.data);
+          
+      });
     };
     Axios.get("http://localhost:3333/orderalert").then((response) => {
       setorderalert(response.data);
@@ -95,10 +114,10 @@ function OrderEM() {
   return (
     <>
 
-      <Navbar bg="dark" variant="dark" sticky="top"expand="md" >
+      <Navbar style={myStyle4} sticky="top"expand="md" >
         <Container>
           <Navbar.Brand >
-            <h3 style={myStyle2} >Order</h3>
+            <h3 style={myStyle3} >Order</h3>
           </Navbar.Brand>
           <Navbar.Toggle />
            <Nav className="justify-content-right">
@@ -115,11 +134,9 @@ function OrderEM() {
                 );
                 
             })}
-
            
-            {/* <Nav.Link href="AlertOrder" ><NotificationsIcon/></Nav.Link> */}
-            <Nav.Link href="History" ><HistoryIcon/></Nav.Link>
-            <Nav.Link href="/" ><LoginIcon/></Nav.Link>
+            <Nav.Link  href="History" ><HistoryIcon/></Nav.Link>
+            <Nav.Link  href="/" ><LoginIcon/></Nav.Link>
             
           </Nav>
         </Container>
@@ -134,23 +151,85 @@ function OrderEM() {
                   <br></br>
                   <text style={myStyle2} > OrderID: {val.orderID} </text>
                   <text style={myStyle2} >amount : {val.amount }</text>
-                  <text style={myStyle2} >TotalPrice: {val.TotalPrice}</text>
-                  <IconButton color='success'
-                  onClick={() => {Orderdetail(val.orderID)}} ><ListAltIcon/></IconButton>
-                 
-                 <text style={{padding:"30px"}} >
-                 <b><Chip color='success' label={val.status}  ></Chip></b>
-                 </text>
+                  <text style={myStyle2} >TotalPrice: {val.TotalPrice} bath</text>
 
+                  {/* รายละเอียดสินค้า */}
+                  <IconButton color='success'
+                  onClick={() => {Orderdetail(val.orderID)}} >
+                  <ListAltIcon/>
+                  </IconButton>
+                  <Dropdown>
+                  {/* <Dropdown.Toggle variant="success" id="dropdown-basic">
+                  <ListAltIcon/>
+                  </Dropdown.Toggle> */}
+
+                  <Dropdown.Menu>
+                    <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                    <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                    <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+
+                 <text style={{padding:"30px"}} >
+                 <b><Chip color='success' label={val.status} ></Chip></b>
+                 </text>
+                
+                   {orderdetail.map((val) => {
+                    return (
+                      <div style={myStyle2} >
+                        <br></br>
+                        <text style={myStyle2} > {val.menu_name} </text>
+                        <text style={myStyle2} >price : {val.price } bath</text>
+                        <text style={myStyle2} > amount: {val.amount}</text>
+                        <Divider size="10px"></Divider>
+
+                        </div>
+                        
+                      );
+                      
+                    })}
                  <text style={myStyle1} fontSize={10} >
                     <CircularProgress size={15}/>  &nbsp;
                     กำลังเตรียม
                   </text> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                   
-                 
-                 
+
+
+                  {/* ปุ่มอัพเดท */}
+                  <button className="btn btn-warning " 
+                  onClick={() => {updateStatus(val.orderID)}}>Update</button>
+                  <Divider size="10px"></Divider>
+                  </div>
                   
-                 
+                );
+                
+            })}
+
+          {orderdetail.map((val) => {
+            return(
+              <div style={myStyle2} >
+                <br></br>
+                <text style={myStyle2} > {val.menu_name} </text>
+                <text style={myStyle2} >price : {val.price } bath</text>
+                <text style={myStyle2} > amount: {val.amount}</text>
+                <Divider size="10px"></Divider>
+
+              </div>
+                
+              );
+              
+          })}
+            
+         
+    </>
+    
+    
+  );
+}
+
+export default OrderEM;
+
+
+
                   
 {/*                                      
                   <Chip icon={<HourglassTopRoundedIcon/>}  label="รอยืนยันคำสั่งซื้อ"  />
@@ -163,22 +242,3 @@ function OrderEM() {
                    */}
                   
                     
-
-                  <button className="btn btn-warning " 
-                  onClick={() => {updateStatus(val.orderID)}}>Update</button>
-                  <Divider size="10px"></Divider>
-                  </div>
-                  
-                );
-                
-            })}
-
-            
-         
-    </>
-    
-    
-  );
-}
-
-export default OrderEM;
