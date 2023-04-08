@@ -17,30 +17,6 @@ import OrderDetails from './Employees/OrderDetails';
 import LoginCus from './Customer/LoginCus';
 
 function App() {
-  //ไว้ใช้ตอนล็อคอินเข้าของลูกค้า
-  /*useEffect(() => {
-    const token = localStorage.getItem('token')
-    fetch("http://localhost:3333/authen", {
-      method: "POST", // or 'PUT'
-      headers: {
-      "Content-Type": "application/json",
-      'Authorization': 'Bearer'+token
-    },
-    })
-    .then(response=> response.json())
-    .then(data => {
-      if(data.status === 'ok'){
-        alert('authen success')
-      }else{
-          alert('authen failed')
-          localStorage.removeItem('token')
-          window.location = '/login'
-      }
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-  }, [])*/
   return (
     <div className="App">
       <Router>
