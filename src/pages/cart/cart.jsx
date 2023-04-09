@@ -9,7 +9,12 @@ import { Product } from "../shop/product";
 
 
 
-export const Cart = () => {
+export const Cart = (props) => {
+  const setSec = (id) => {
+    props.setUserID(id);
+  }
+  //setSec(11);
+  console.log(props.UserID)
   const { cartItems, getTotalCartAmount, checkout } = useContext(ShopContext);
   const totalAmount = getTotalCartAmount();
   const navigate = useNavigate();
@@ -33,7 +38,8 @@ export const Cart = () => {
     const data = {
       amount : 2,
       TotalPrice : 90.00,
-      status	: "รอยืนยันคำสั่งซื้อ" ,
+      status	: "รอยืนยันคำสั่งซื้อ",
+      user_id : props.UserID
     };
   }
 

@@ -18,15 +18,18 @@ const theme = createTheme();
 
 
 export default function SignInSide() {
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-
+    var userid;
     ///******************************* */
     const jsonData = {
         email: data.get('email'),
         password: data.get('password'),
-    }
+    } 
+    
+
     fetch("http://localhost:3333/login", {
     method: "POST", // or 'PUT'
     headers: {
@@ -38,33 +41,20 @@ export default function SignInSide() {
     .then((data) => {
         if(data.status=='ok'){
             localStorage.setItem('token',data.token)
-            //เรียกไปหน้าสถิติ
+            console.log(data.token)
             window.location = '/Statistics'
             alert('login success')
         }
         else{
             alert('login failed')
         }
-       
-
     })
     .catch((error) => {
         console.error("Error:", error);
     });
   };
 
-  function getUserData() {
-    const token = localStorage.getItem('token');
-  
-    fetch('/user-data', {
-      headers: { Authorization: `Bearer ${token}` }
-    })
-    .then(response => response.json())
-    .then(data => {
-      // Update UI with user data
-    })
-    .catch(error => console.error(error));
-  }
+
 
   return (
     <ThemeProvider theme={theme}>

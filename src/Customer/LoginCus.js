@@ -30,8 +30,12 @@ function Copyright(props) {
 
 const theme = createTheme();
 //นำเสนอหน้าจอ
-export default function SignInSide() {
-  
+export default function SignInSide(props) {
+
+  const setSec = (id) => {
+    props.setUserID(id);
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -51,8 +55,8 @@ export default function SignInSide() {
   .then(data => {
     if(data.status === 'ok'){
       alert('login success')
+      setSec(data.id);
       localStorage.setItem('token', data.token)
-      localStorage.setItem('userId',data.id);
       //console.log(data.id);
       window.location = '/shop'
     } 
@@ -69,6 +73,13 @@ export default function SignInSide() {
     console.error("Error:", error);
   });
   };
+
+  fetch('http://localhost:3333/createCookie')
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+  })
+  .catch(error => console.error('Error fetching data:', error));
 
 
   return (

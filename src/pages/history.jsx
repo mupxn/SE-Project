@@ -3,22 +3,38 @@ import { Navbar } from "../components/navbar";
 import Axios from "axios";
 import { useState } from "react";
 
-export const HistoryCus = () => {
-    const [orderhis] = useState([]);
+export const HistoryCus = (props) => {
+    const [orderhis, setorderhis] = useState([]);
 
-    Axios.get("http://localhost:3333/orderfinish").then((response) => {
-    orderhis(response.data);
+    const setSec = (id) => {
+        props.setUserID(id);
+      }
+      //setSec(11);
+    console.log(props.UserID);
+
+    Axios.get("http://localhost:3333/history").then((response) => {
+    setorderhis(response.data);
     });
 
+    console.log("yea")
+
   return (
+    <>
     <div className="history">
       <Navbar/>
       <h1>HISTORY</h1>
       <div>
-        {orderhis.map(()=>{
-            console.log("yes")
-        })}
       </div>
     </div>
+    {orderhis.map((val)=>{
+           return (
+            <div>
+                <h3> OrderID  {val.orderID} </h3>
+                <h3>amount  {val.amount }</h3>
+                <h3>TotalPrice  {val.TotalPrice} bath</h3>
+            </div>
+           );
+        })}
+    </>
   );
 };

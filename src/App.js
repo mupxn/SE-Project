@@ -17,16 +17,27 @@ import OrderDetails from './Employees/OrderDetails';
 import LoginCus from './Customer/LoginCus';
 import ShopCus from './Customer/shop-page';
 import { HistoryCus } from './pages/history';
+import { useState, useEffect } from "react";
+
+
+  // var UserID ;
+  // const setUserID = (id) =>{
+  //   UserID = id;
+  //   //console.log(UserID)
+  // }
+
 
 function App() {
+  const [UserID, setUserID] = useState(0);
   return (
     <div className="App">
       <Router>
       <Routes>
         {/* Customer */}
+      
       <Route path="/shop-page" element={<ShopCus/>} />
       <Route path="/signup" element={<SignUp/>} />
-      <Route path="/" element={<LoginCus/>} />
+      <Route path="/" element={<LoginCus setUserID = {setUserID} />} />
       {/* //Employees// */ }
       <Route path="/OrderEM" element={<OrderEM/>} />
       <Route path="/LoginEM" element={<LoginEM/>} />
@@ -38,18 +49,15 @@ function App() {
   </Router>
      <ShopContextProvider>
         <Router>
-          
           <Routes>
             <Route path="/shop" element={<Shop />} />
-            <Route path="/history-customer" element={<HistoryCus />} />
-            <Route path="/cart" element={<Cart />} />
+            <Route path="/history-customer" element={<HistoryCus UserID = {UserID} setUserID = {setUserID}/>} />
+            <Route path="/cart"  element={<Cart UserID = {UserID} setUserID = {setUserID} />} />
             <Route path="/checkout" element={<Checkout/>} />
           </Routes>
         </Router>
         </ShopContextProvider>
     </div>
-    
-    
   );
 }
 
