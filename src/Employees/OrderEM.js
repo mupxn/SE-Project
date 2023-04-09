@@ -57,7 +57,7 @@ function OrderEM() {
     fontSize :"40px"
   };
   const myStyle4 = {
-    backgroundColor : "lightgreen"
+    backgroundColor : "#357a38"
   };
 
   Axios.get("http://localhost:3333/order").then((response) => {
@@ -100,7 +100,7 @@ function OrderEM() {
         
     // })
     const Orderdetail = (id) => {
-      Axios.get("http://localhost:3333/orderdetail", {orderID: id }).then((response) => {
+      Axios.get("http://localhost:3333/orderdetail", {orderID: id}).then((response) => {
         setorderdetail(response.data);
           
       });
@@ -143,21 +143,23 @@ function OrderEM() {
       </Navbar>
       
           {/* ดึงorder */}
-          {/* <OrderDetails /> */}
           
+
             {order.map((val) => {
               return (
                 <div style={myStyle2} >
                   <br></br>
-                  <text style={myStyle2} > OrderID: {val.orderID} </text>
+                  <text style={myStyle2} > OrderID : {val.orderID} </text>
                   <text style={myStyle2} >amount : {val.amount }</text>
-                  <text style={myStyle2} >TotalPrice: {val.TotalPrice} bath</text>
-
+                  <text style={myStyle2} >TotalPrice : {val.TotalPrice} bath</text>
+                  
+                  {/* <OrderDetails /> */}
                   {/* รายละเอียดสินค้า */}
                   <IconButton color='success'
                   onClick={() => {Orderdetail(val.orderID)}} >
                   <ListAltIcon/>
                   </IconButton>
+
                   {/* <Dropdown>
                   <Dropdown.Toggle variant="success" id="dropdown-basic">
                   <ListAltIcon/>
@@ -174,7 +176,24 @@ function OrderEM() {
                  <b><Chip color='success' label={val.status} ></Chip></b>
                  </text>
                 
-                   {orderdetail.map((val) => {
+                   
+                 <text style={myStyle1} fontSize={10} size={10} >
+                    <CircularProgress size={10}/>  &nbsp;
+                    กำลังเตรียม
+                  </text> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+                  {/* ปุ่มอัพเดท */}
+                  <button className="btn btn-warning btn-sm " 
+                  onClick={() => {updateStatus(val.orderID)}}>เสร็จสิ้น</button>
+                  <Divider size="10px"></Divider>
+                  </div>
+                  
+                );
+                
+            })}
+              
+              {orderdetail.map((val) => {
                     return (
                       <div style={myStyle2} >
                         <br></br>
@@ -188,36 +207,6 @@ function OrderEM() {
                       );
                       
                     })}
-                 <text style={myStyle1} fontSize={10} >
-                    <CircularProgress size={15}/>  &nbsp;
-                    กำลังเตรียม
-                  </text> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-
-                  {/* ปุ่มอัพเดท */}
-                  <button className="btn btn-warning " 
-                  onClick={() => {updateStatus(val.orderID)}}>Update</button>
-                  <Divider size="10px"></Divider>
-                  </div>
-                  
-                );
-                
-            })}
-
-          {orderdetail.map((val) => {
-            return(
-              <div style={myStyle2} >
-                <br></br>
-                <text style={myStyle2} > {val.menu_name} </text>
-                <text style={myStyle2} >price : {val.price } bath</text>
-                <text style={myStyle2} > amount: {val.amount}</text>
-                <Divider size="10px"></Divider>
-
-              </div>
-                
-              );
-              
-          })}
             
          
     </>
