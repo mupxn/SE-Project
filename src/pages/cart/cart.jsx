@@ -10,7 +10,6 @@ import { Product } from "../shop/product";
 
 
 export const Cart = () => {
-  const userId = localStorage.getItem('userId');
   const { cartItems, getTotalCartAmount, checkout } = useContext(ShopContext);
   const totalAmount = getTotalCartAmount();
   const navigate = useNavigate();
@@ -35,20 +34,8 @@ export const Cart = () => {
       amount : 2,
       TotalPrice : 90.00,
       status	: "รอยืนยันคำสั่งซื้อ" ,
-      user_id	: userId
     };
-
-
-    
   }
-
-  fetch('http://localhost:3333/order_id')
-  .then(response => response.json())
-  .then(data => {
-    orderid = data.someProperty; // Assign the value of the property to the variable
-    console.log(orderid); // Output the variable to the console
-  })
-  .catch(error => console.error(error));
 
   function fetchDetail() {
 
