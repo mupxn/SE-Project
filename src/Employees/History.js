@@ -17,6 +17,10 @@ function History() {
     fontFamily: "Sans-Serif",
     padding : "40px"
   };
+  const myStyle3 = {
+    fontFamily: "Sans-Serif",
+    fontSize :"40px"
+  };
   Axios.get("http://localhost:3333/orderfinish").then((response) => {
     setorderfinish(response.data);
     });
@@ -26,7 +30,7 @@ function History() {
        <Navbar bg="dark" variant="dark" sticky="top"expand="md" >
         <Container>
           <Navbar.Brand >
-            <h3>History</h3>
+            <h3 style={myStyle3}  >History</h3>
           </Navbar.Brand>
           <Navbar.Toggle />
        <Nav className="justify-content-right">
@@ -45,10 +49,10 @@ function History() {
               return (
                 <div style={myStyle2} >
                   <br></br>
-                  <text style={myStyle2} > OrderID: {val.orderID} </text>
-                  <text style={myStyle2} >amount : {val.amount }</text>
-                  <text style={myStyle2} >TotalPrice: {val.TotalPrice}</text>
-                  <b><Chip color='success' label="เสร็จสิ้น" ></Chip></b>
+                  <text style={myStyle2} > OrderID  {val.orderID} </text>
+                  <text style={myStyle2} >amount  {val.amount }</text>
+                  <text style={myStyle2} >TotalPrice  {val.TotalPrice} bath</text>
+                  <b><Chip color='primary' label={val.status}  ></Chip></b>
                   
                   <br></br><br></br>
                   <Divider size="10px"></Divider>
