@@ -1,13 +1,10 @@
 import React from "react";
 import { Navbar } from "../components/navbar";
-export const Status = () => {
+export const HistoryCus = () => {
   return (
-    <div className="status">
+    <div className="history">
       <Navbar/>
-      <div>
-       <h1>STATUS</h1> 
-      </div>
-      
+      <h3>HISTORY</h3>
     </div>
   );
 };

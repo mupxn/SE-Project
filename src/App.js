@@ -16,6 +16,7 @@ import SignUp from './Customer/signup';
 import OrderDetails from './Employees/OrderDetails';
 import LoginCus from './Customer/LoginCus';
 import ShopCus from './Customer/shop-page';
+import { HistoryCus } from './pages/history';
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
           <Routes>
             <Route path="/shop" element={<Shop />} />
             <Route path="/status" element={<Status />} />
+            <Route path="/history-customer" element={<HistoryCus />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout" element={<Checkout/>} />
           </Routes>
