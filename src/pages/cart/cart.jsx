@@ -17,29 +17,29 @@ export const Cart = () => {
   let orderid; // Declare the variable outside the fetch method
 
   function fetchOrder() {
-
+  fetch('http://localhost:3333/orderinput', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
     const data = {
-      amount : totalAmount,
-      TotalPrice : totalAmount,
+      amount : 2,
+      TotalPrice : 90.00,
       status	: "รอยืนยันคำสั่งซื้อ" ,
-      user_id	: 21
+      user_id	: userId
     };
 
 
-    fetch('http://localhost:3333/orderinput', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Success:', data);
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
+    
   }
 
   fetch('http://localhost:3333/order_id')
