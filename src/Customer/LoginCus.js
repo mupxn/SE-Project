@@ -29,9 +29,9 @@ function Copyright(props) {
 }
 
 const theme = createTheme();
-
 //นำเสนอหน้าจอ
 export default function SignInSide() {
+  
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -51,9 +51,9 @@ export default function SignInSide() {
   .then(data => {
     if(data.status === 'ok'){
       alert('login success')
-      const userId = data.user.id;
-      localStorage.setItem('userId', userId);
       localStorage.setItem('token', data.token)
+      localStorage.setItem('userId',data.id);
+      //console.log(data.id);
       window.location = '/shop'
     } 
     else if(data.status === 'okadmin'){
