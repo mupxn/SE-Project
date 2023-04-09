@@ -14,18 +14,19 @@ export const Cart = () => {
   const { cartItems, getTotalCartAmount, checkout } = useContext(ShopContext);
   const totalAmount = getTotalCartAmount();
   const navigate = useNavigate();
-  function fetchDetail() {
+  let orderid; // Declare the variable outside the fetch method
+
+  function fetchOrder() {
 
     const data = {
-      menu_name	: "สลัดผัก",
-      price	: "45",
-      amount : "1",
-      menuID : "1",
-      orderID	 : "23"
+      amount : totalAmount,
+      TotalPrice : totalAmount,
+      status	: "รอยืนยันคำสั่งซื้อ" ,
+      user_id	: 21
     };
 
-    
-    fetch('http://localhost:3333/order_detail', {
+
+    fetch('http://localhost:3333/orderinput', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -41,17 +42,26 @@ export const Cart = () => {
     });
   }
 
-  function fetchOrder() {
+  fetch('http://localhost:3333/order_id')
+  .then(response => response.json())
+  .then(data => {
+    orderid = data.someProperty; // Assign the value of the property to the variable
+    console.log(orderid); // Output the variable to the console
+  })
+  .catch(error => console.error(error));
+
+  function fetchDetail() {
 
     const data = {
-      amount : totalAmount,
-      TotalPrice : totalAmount,
-      status	: "รอยืนยันคำสั่งซื้อ" ,
-      user_id	: userId
+      menu_name	: cartItems[PRODUCTS.productName],
+      price	: cartItems[PRODUCTS.price],
+      amount : cartItems[PRODUCTS.id],
+      menuID : "1",
+      orderID	 : orderid
     };
 
-
-    fetch('http://localhost:3333/orderinput', {
+    
+    fetch('http://localhost:3333/order_detail', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

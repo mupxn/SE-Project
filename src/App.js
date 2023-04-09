@@ -15,6 +15,7 @@ import History from './Employees/History';
 import SignUp from './Customer/signup';
 import OrderDetails from './Employees/OrderDetails';
 import LoginCus from './Customer/LoginCus';
+import ShopCus from './Customer/shop-page';
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
       <Router>
       <Routes>
         {/* Customer */}
-      <Route path="/login" element={<LoginCus/>} />
+      <Route path="/shop-page" element={<ShopCus/>} />
       <Route path="/signup" element={<SignUp/>} />
       <Route path="/" element={<LoginCus/>} />
       {/* //Employees// */ }
@@ -34,7 +35,7 @@ function App() {
       <Route path="/OrderDetails" element={<OrderDetails/>} />
     </Routes>
   </Router>
-      <ShopContextProvider>
+     <ShopContextProvider>
         <Router>
           
           <Routes>
@@ -44,7 +45,7 @@ function App() {
             <Route path="/checkout" element={<Checkout/>} />
           </Routes>
         </Router>
-      </ShopContextProvider>
+        </ShopContextProvider>
     </div>
     
     
