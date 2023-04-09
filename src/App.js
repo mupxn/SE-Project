@@ -37,7 +37,7 @@ function App() {
       
       <Route path="/shop-page" element={<ShopCus/>} />
       <Route path="/signup" element={<SignUp/>} />
-      <Route path="/" element={<LoginCus setUserID = {setUserID} />} />
+      <Route path="/" element={<LoginCus UserID = {UserID} setUserID = {setUserID} />} />
       {/* //Employees// */ }
       <Route path="/OrderEM" element={<OrderEM/>} />
       <Route path="/LoginEM" element={<LoginEM/>} />
@@ -50,10 +50,10 @@ function App() {
      <ShopContextProvider>
         <Router>
           <Routes>
-            <Route path="/shop" element={<Shop />} />
+            <Route path="/shop" element={<Shop UserID = {UserID} setUserID = {setUserID}/>} />
             <Route path="/history-customer" element={<HistoryCus UserID = {UserID} setUserID = {setUserID}/>} />
             <Route path="/cart"  element={<Cart UserID = {UserID} setUserID = {setUserID} />} />
-            <Route path="/checkout" element={<Checkout/>} />
+            <Route path="/checkout" element={<Checkout UserID = {UserID} setUserID = {setUserID}/>} />
           </Routes>
         </Router>
         </ShopContextProvider>
