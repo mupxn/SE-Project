@@ -17,13 +17,45 @@ function AlertOrder() {
     fontFamily: "Sans-Serif",
     padding : "40px"
   };
+  const myStyle4 = {
+    backgroundColor : "#f50057"
+  };
+  const myStyle3 = {
+    fontFamily: "Sans-Serif",
+    fontSize :"40px"
+  };
+  const myStyle = {
+    padding : "10px",
+    fontFamily: "Sans-Serif",
+    backgroundColor : "primary"
+  };
   Axios.get("http://localhost:3333/orderconfirmation").then((response) => {
       setOrder(response.data);
     });
   
     
-  const updateStatus = (id) => {
+  const updateStatus1 = (id) => {
     Axios.put("http://localhost:3333/update", { status: "ยืนยันคำสั่งซื้อ" , orderID: id }).then(
+      (response) => {
+        setOrder(
+          order.map((val) => {
+            return val.orderID == id
+              ? {
+                  orderID: val.orderID ,
+                  amount: val.amount,
+                  TotalPrice: val.TotalPrice,
+                  status: status,
+                  user_id: val.user_id,
+                  
+                }
+              : val;
+          })
+        );
+      }
+    );
+  };
+  const updateStatus2 = (id) => {
+    Axios.put("http://localhost:3333/update", { status: "ยกเลิกคำสั่งซื้อ" , orderID: id }).then(
       (response) => {
         setOrder(
           order.map((val) => {
@@ -46,10 +78,10 @@ function AlertOrder() {
   
   return (
     <>
-       <Navbar bg="dark" variant="dark" sticky="top"expand="md" >
+       <Navbar style={myStyle4} sticky="top"expand="md" >
         <Container>
           <Navbar.Brand >
-            <h3>AlertOrder</h3>
+            <h3  style={myStyle3} >AlertOrder</h3>
           </Navbar.Brand>
           <Navbar.Toggle />
         
@@ -75,12 +107,15 @@ function AlertOrder() {
                   <text style={myStyle2} >amount : {val.amount }</text>
                   <text style={myStyle2} >TotalPrice: {val.TotalPrice}</text>
                   <text style={{padding:"30px"}} >
-                 <b><Chip color='error' label={val.status}  ></Chip></b>
+                 <b><Chip style={myStyle} label={val.status}  ></Chip></b>
                  </text>
-                  <button className="btn btn-warning" 
-                  // onChange={() => setNewStatus('p')}  
-                  onClick={() => {updateStatus(val.orderID)}}>Update</button>
+                 <b><button type="button" class="btn btn-success" 
+                  onClick={() => {updateStatus1(val.orderID)}}>ยืนยัน</button></b>
+                  
+                  <b> <button type="button"  class="btn btn-danger"
+                  onClick={() => {updateStatus2(val.orderID)}}>ยกเลิก</button></b>
                  
+
                   <Divider size="10px"></Divider>
 
                   </div>
