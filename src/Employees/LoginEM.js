@@ -15,9 +15,6 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme();
 
-fetch('http://localhost:3333/createCookie')
-    .then(response => response.text())
-    .then(data => console.log(data));
 
 
 export default function SignInSide() {
