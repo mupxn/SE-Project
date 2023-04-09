@@ -7,8 +7,9 @@ import { useEffect } from "react";
 
 
 export const Shop = () => {
-  /*useEffect(() => {
+  useEffect(() => {
     const token = localStorage.getItem("token");
+   
     fetch("http://localhost:3333/authen", {
       method: "post",
       headers: {
@@ -21,6 +22,8 @@ export const Shop = () => {
         //console.error('success:', data);
         if (data.status == "ok") {
           //alert('authen successfully')
+          localStorage.setItem('userId',data.id);
+          console.log(data.id);
         } else {
           alert("please login");
           localStorage.removeItem("token");
@@ -30,7 +33,7 @@ export const Shop = () => {
       .catch((error) => {
         console.error("Error:", error);
       });
-  }, []);*/
+  }, []);
 
 
   return (
