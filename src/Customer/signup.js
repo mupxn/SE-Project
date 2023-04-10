@@ -37,7 +37,8 @@ export default function SignUp() {
       email: data.get('email'),
       password: data.get('password'),
       fname: data.get('firstName'),
-      lname: data.get('lastName')
+      lname: data.get('lastName'),
+      number: data.get('number')
     }
 
     fetch("http://localhost:3333/register", {
@@ -124,6 +125,17 @@ export default function SignUp() {
                 />
               </Grid>
               <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="number"
+                  label="number"
+                  type="number"
+                  id="number"
+                  autoComplete="new-number"
+                />
+              </Grid>
+              <Grid item xs={12}>
                 <FormControlLabel
                   control={<Checkbox value="allowExtraEmails" color="primary" />}
                   label="I want to receive inspiration, marketing promotions and updates via email."
@@ -140,7 +152,7 @@ export default function SignUp() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="/login" variant="body2">
+                <Link href="/" variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>

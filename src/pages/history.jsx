@@ -5,12 +5,15 @@ import { useState, useEffect } from 'react';
 export const HistoryCus = (props) => {
     const [orderhis, setorderhis] = useState([]);
     const [isMounted, setIsMounted] = useState(true);
+    var userID = props.UserId;
 
 
-  fetch(`/history?userID=${encodeURIComponent(props.UserID)}`)
-  .then(response => response.json())
-  .then(data => console.log(data))
-  .catch(error => console.error(error));
+    fetch(`http://localhost:3333/history?userID='${userID}'`, {
+      method: 'GET'
+    })
+    .then(response => response.json())
+    .then(data => console.log(userID))
+    .catch(error => console.error(error));
 
   useEffect((props) => {
     fetchData();

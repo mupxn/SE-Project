@@ -55,10 +55,9 @@ export default function SignInSide(props) {
   .then(data => {
     if(data.status === 'ok'){
       alert('login success')
-      // setSec(data.id);
-      // console.log(props.UserID);
+      setSec(data.userid);
+      console.log(props.UserID);
       localStorage.setItem('token', data.token)
-      console.log(data.userid);
       window.location = '/shop'
     } 
     else if(data.status === 'okadmin'){

@@ -38,7 +38,7 @@ export const Cart = (props) => {
       })
       .then(response => response.json())
       .then(data => {
-        orderid = data.ORDERID;
+        orderid =
         console.log('Success:', data);
       })
       .catch((error) => {

@@ -21,7 +21,8 @@ export const Shop = (props) => {
       .then((data) => {
         //console.error('success:', data);
         if (data.status == "ok") {
-          alert('authen successfully')
+          //alert('authen successfully')
+          console.log(props.UserID)
         } else {
           alert("please login");
           localStorage.removeItem("token");
