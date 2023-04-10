@@ -89,9 +89,9 @@ export const Cart = (props) => {
           }
         })}
       </div>
-      {totalAmount > 0 ? (
+      {totalAmount[0] > 0 ? (
         <div className="checkout">
-          <p> Subtotal: ${totalAmount} </p>
+          <p> Subtotal: ${totalAmount[0]} </p>
           <button onClick={() => navigate("/shop")}> Continue Shopping </button>
           <button id="check" onClick={() => {
               //fetchOrder();
