@@ -12,7 +12,7 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Login } from '@mui/icons-material';
+import { Login, Token } from '@mui/icons-material';
 //
 
 function Copyright(props) {
@@ -31,6 +31,37 @@ function Copyright(props) {
 const theme = createTheme();
 //นำเสนอหน้าจอ
 export default function SignInSide(props) {
+
+  // fetch('http://localhost:3333/login', {
+  //     method: 'POST',
+  //     credentials: 'include'
+  //   })
+  //   .then(response=> response.json())
+  //   .then(data => {
+  //     if(data.token!=null){
+  //       logout();
+  //     }
+  //   })
+  //   .catch((error) => {
+  //     console.error("Error:", error);
+  //   });
+
+  
+  // function logout() {
+
+  //   localStorage.removeItem('token');
+  //   fetch('http://localhost:3333/logout', {
+  //     method: 'POST',
+  //     credentials: 'include'
+  //   })
+  //   .then(response=> response.json())
+  //   .then(data => {
+  //   })
+  //   .catch((error) => {
+  //     console.error("Error:", error);
+  //   });
+    
+  // }
 
   const setSec = (id) => {
     props.setUserID(id);
@@ -54,9 +85,10 @@ export default function SignInSide(props) {
   .then(response=> response.json())
   .then(data => {
     if(data.status === 'ok'){
-      alert('login success')
-      setSec(data.userid);
+      var td = data.userid;
+      setSec(td);
       console.log(props.UserID);
+      alert('login success')
       localStorage.setItem('token', data.token)
       window.location = '/shop'
     } 

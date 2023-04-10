@@ -9,6 +9,8 @@ import { useEffect } from "react";
 export const Shop = (props) => {
   useEffect(() => {
     const token = localStorage.getItem("token");
+
+    console.log(props.UserID);
    
     fetch("http://localhost:3333/authen", {
       method: "post",
