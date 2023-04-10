@@ -30,6 +30,8 @@ import { useState, useEffect } from "react";
 function App() {
   
   const [UserID, setUserID] = useState(0);
+  const [orderid, setorderid] = useState(0);
+  const [Status, setStatus] = useState(0);
 
 
   return (
@@ -53,10 +55,10 @@ function App() {
      <ShopContextProvider>
         <Router>
           <Routes>
-            <Route path="/shop" element={<Shop UserID = {UserID} setUserID = {setUserID}/>} />
-            <Route path="/history-customer" element={<HistoryCus UserID = {UserID} setUserID = {setUserID}/>} />
-            <Route path="/cart"  element={<Cart UserID = {UserID} setUserID = {setUserID} />} />
-            <Route path="/checkout" element={<Checkout UserID = {UserID} setUserID = {setUserID}/>} />
+            <Route path="/shop" element={<Shop UserID = {UserID} setUserID = {setUserID} orderid = {orderid} setorderid = {setorderid}/>} />
+            <Route path="/history-customer" element={<HistoryCus UserID = {UserID} setUserID = {setUserID} orderid = {orderid} setorderid = {setorderid}/>} />
+            <Route path="/cart"  element={<Cart UserID = {UserID} setUserID = {setUserID} orderid = {orderid} setorderid = {setorderid}/>} />
+            <Route path="/checkout" element={<Checkout UserID = {UserID} setUserID = {setUserID} orderid = {orderid} setorderid = {setorderid}/>} />
           </Routes>
         </Router>
         </ShopContextProvider>

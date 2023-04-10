@@ -9,21 +9,11 @@ export const HistoryCus = (props) => {
     const [orderhis, setorderhis] = useState([]);
     var userID = props.UserId;
 
-    const jsondata = {
-      user_id : userID
-    };
-
-
-    fetch('http://localhost:3333/history', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(jsondata)
-    })
+  fetch('http://localhost:3333/history')
   .then(response => response.json())
   .then(data => {
     setorderhis(data);
+    console.log(data);
   })
   .catch(error => {
     console.error(error);
@@ -43,10 +33,7 @@ export const HistoryCus = (props) => {
                   <text> OrderID  {val.orderID} </text>
                   <text>amount  {val.amount }</text>
                   <text >TotalPrice  {val.TotalPrice} bath</text>
-                  
                   <br></br><br></br>
-
-
                   </div>
                 );
             })}

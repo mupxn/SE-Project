@@ -10,12 +10,18 @@ import { Product } from "../shop/product";
 
 
 export const Cart = (props) => {
-
-  console.log(props.UserID)
-  const { cartItems, getTotalCartAmount, checkout } = useContext(ShopContext);
+  const { cartItems, getTotalCartAmount, checkout,sendDataToBackend } = useContext(ShopContext);
   const totalAmount = getTotalCartAmount();
   const navigate = useNavigate();
   let orderid;
+
+  const secOnce = (id) => {
+    props.setorderid(id);
+  }
+
+  const setStat = (id) => {
+    props.setStatus(id);
+  }
   
 
 
@@ -36,14 +42,17 @@ export const Cart = (props) => {
       })
       .then(response => response.json())
       .then(data => {
-        orderid = data.ORDERID;
-        console.log(orderid);
+        secOnce(data.ORDERID);
+        let test = props.orderid;
+        console.log(test);
         console.log('Success:', data);
       })
       .catch((error) => {
         console.error('Error:', error);
       });
   }
+
+  fetchOrder();
 
   return (
     <div className="cart">
