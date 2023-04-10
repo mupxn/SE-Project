@@ -20,7 +20,15 @@ export const Cart = (props) => {
   const navigate = useNavigate();
   let orderid; // Declare the variable outside the fetch method
 
+
   function fetchOrder() {
+    const data = {
+      amount : 2,
+      TotalPrice : 90.00,
+      status	: "รอยืนยันคำสั่งซื้อ",
+      user_id : props.UserID
+    };
+
   fetch('http://localhost:3333/orderinput', {
         method: 'POST',
         headers: {
@@ -30,17 +38,12 @@ export const Cart = (props) => {
       })
       .then(response => response.json())
       .then(data => {
+        orderid = data.ORDERID;
         console.log('Success:', data);
       })
       .catch((error) => {
         console.error('Error:', error);
       });
-    const data = {
-      amount : 2,
-      TotalPrice : 90.00,
-      status	: "รอยืนยันคำสั่งซื้อ",
-      user_id : props.UserID
-    };
   }
 
   function fetchDetail() {

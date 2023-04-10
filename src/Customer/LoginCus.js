@@ -55,9 +55,10 @@ export default function SignInSide(props) {
   .then(data => {
     if(data.status === 'ok'){
       alert('login success')
-      setSec(data.id);
+      // setSec(data.id);
+      // console.log(props.UserID);
       localStorage.setItem('token', data.token)
-      //console.log(data.id);
+      console.log(data.userid);
       window.location = '/shop'
     } 
     else if(data.status === 'okadmin'){
@@ -73,13 +74,6 @@ export default function SignInSide(props) {
     console.error("Error:", error);
   });
   };
-
-  fetch('http://localhost:3333/createCookie')
-  .then(response => response.json())
-  .then(data => {
-    console.log(data);
-  })
-  .catch(error => console.error('Error fetching data:', error));
 
 
   return (

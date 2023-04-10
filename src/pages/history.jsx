@@ -1,22 +1,37 @@
 import React from "react";
 import { Navbar } from "../components/navbar";
-import Axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from 'react';
 
 export const HistoryCus = (props) => {
     const [orderhis, setorderhis] = useState([]);
+    const [isMounted, setIsMounted] = useState(true);
 
-    const setSec = (id) => {
-        props.setUserID(id);
-      }
-      //setSec(11);
-    console.log(props.UserID);
 
-    Axios.get("http://localhost:3333/history").then((response) => {
-    setorderhis(response.data);
-    });
+  fetch(`/history?userID=${encodeURIComponent(props.UserID)}`)
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error(error));
 
-    console.log("yea")
+  useEffect((props) => {
+    fetchData();
+    // cleanup function to set isMounted to false when component unmounts
+    return () => {
+      setIsMounted(false);
+    };
+  }, []);
+
+  function fetchData() {
+    fetch("http://localhost:3333/history")
+      .then(response => response.json())
+      .then(data => {
+        if (isMounted) {
+          setorderhis(data); // set the state only if component is still mounted
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
 
   return (
     <>
@@ -24,17 +39,25 @@ export const HistoryCus = (props) => {
       <Navbar/>
       <h1>HISTORY</h1>
       <div>
+      {orderhis.map((val) => {
+              return (
+                <div >
+                  <br></br>
+                  <text> OrderID  {val.orderID} </text>
+                  <text>amount  {val.amount }</text>
+                  <text >TotalPrice  {val.TotalPrice} bath</text>
+                  
+                  <br></br><br></br>
+
+
+                  </div>
+                  
+                );
+                
+            })}
+
       </div>
     </div>
-    {orderhis.map((val)=>{
-           return (
-            <div>
-                <h3> OrderID  {val.orderID} </h3>
-                <h3>amount  {val.amount }</h3>
-                <h3>TotalPrice  {val.TotalPrice} bath</h3>
-            </div>
-           );
-        })}
     </>
   );
 };
