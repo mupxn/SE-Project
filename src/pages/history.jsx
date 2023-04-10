@@ -48,9 +48,7 @@ export const HistoryCus = (props) => {
 
 
                   </div>
-                  
                 );
-                
             })}
 
       </div>
