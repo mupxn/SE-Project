@@ -50,7 +50,6 @@ function sendDataToBackend() {
     });
 }
 
-   
    name.push(productName);
    Price.push(price);
    amount.push(cartItems[id]);
