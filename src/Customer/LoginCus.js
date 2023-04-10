@@ -28,44 +28,16 @@ function Copyright(props) {
   );
 }
 
+var td;
+
 const theme = createTheme();
 //นำเสนอหน้าจอ
 export default function SignInSide(props) {
-
-  // fetch('http://localhost:3333/login', {
-  //     method: 'POST',
-  //     credentials: 'include'
-  //   })
-  //   .then(response=> response.json())
-  //   .then(data => {
-  //     if(data.token!=null){
-  //       logout();
-  //     }
-  //   })
-  //   .catch((error) => {
-  //     console.error("Error:", error);
-  //   });
-
   
-  // function logout() {
-
-  //   localStorage.removeItem('token');
-  //   fetch('http://localhost:3333/logout', {
-  //     method: 'POST',
-  //     credentials: 'include'
-  //   })
-  //   .then(response=> response.json())
-  //   .then(data => {
-  //   })
-  //   .catch((error) => {
-  //     console.error("Error:", error);
-  //   });
-    
-  // }
-
   const setSec = (id) => {
     props.setUserID(id);
   }
+  
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -85,9 +57,8 @@ export default function SignInSide(props) {
   .then(response=> response.json())
   .then(data => {
     if(data.status === 'ok'){
-      var td = data.userid;
+      td = parseInt(data.userid);
       setSec(td);
-      console.log(props.UserID);
       alert('login success')
       localStorage.setItem('token', data.token)
       window.location = '/shop'
@@ -105,6 +76,12 @@ export default function SignInSide(props) {
     console.error("Error:", error);
   });
   };
+
+  console.log("yes" + props.UserID);
+  console.log(td);
+  setSec(td);
+
+
 
 
   return (

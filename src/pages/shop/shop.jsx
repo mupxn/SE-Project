@@ -5,12 +5,10 @@ import "./shop.css";
 import { Navbar } from "../../components/navbar";
 import { useEffect } from "react";
 
-
 export const Shop = (props) => {
   useEffect(() => {
     const token = localStorage.getItem("token");
 
-    console.log(props.UserID);
    
     fetch("http://localhost:3333/authen", {
       method: "post",
@@ -24,7 +22,6 @@ export const Shop = (props) => {
         //console.error('success:', data);
         if (data.status == "ok") {
           //alert('authen successfully')
-          console.log(props.UserID)
         } else {
           alert("please login");
           localStorage.removeItem("token");
@@ -36,7 +33,7 @@ export const Shop = (props) => {
       });
   }, []);
 
-
+  console.log(props.UserID)
 
   return (
     

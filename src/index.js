@@ -10,7 +10,7 @@ import Statistics from './Employees/Statistics';
 import AlertOrder from './Employees/AlertOrder';
 import History from './Employees/History';
 
-import LoginCus from './Customer/LoginCus';
+
 import SignUp from './Customer/signup';
 
 

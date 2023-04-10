@@ -10,9 +10,9 @@ import { Product } from "../shop/product";
 
 
 export const Cart = (props) => {
-  const setSec = (id) => {
-    props.setUserID(id);
-  }
+  // const setSec = (id) => {
+  //   props.setUserID(id);
+  // }
   //setSec(11);
   console.log(props.UserID)
   const { cartItems, getTotalCartAmount, checkout } = useContext(ShopContext);
@@ -21,30 +21,30 @@ export const Cart = (props) => {
   let orderid; // Declare the variable outside the fetch method
 
 
-  function fetchOrder() {
-    const data = {
-      amount : 2,
-      TotalPrice : 90.00,
-      status	: "รอยืนยันคำสั่งซื้อ",
-      user_id : props.UserID
-    };
+  // function fetchOrder() {
+  //   const data = {
+  //     amount : totalAmount[1],
+  //     TotalPrice : totalAmount[0],
+  //     status	: "รอยืนยันคำสั่งซื้อ",
+  //     user_id : props.UserID
+  //   };
 
-  fetch('http://localhost:3333/orderinput', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      })
-      .then(response => response.json())
-      .then(data => {
-        orderid =
-        console.log('Success:', data);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
-  }
+  // fetch('http://localhost:3333/orderinput', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json'
+  //       },
+  //       body: JSON.stringify(data)
+  //     })
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       orderid =
+  //       console.log('Success:', data);
+  //     })
+  //     .catch((error) => {
+  //       console.error('Error:', error);
+  //     });
+  // }
 
   function fetchDetail() {
 
@@ -73,6 +73,9 @@ export const Cart = (props) => {
     });
   }
 
+  console.log(totalAmount[0]);
+  console.log(totalAmount[1]);
+
   return (
     <div className="cart">
       <Navbar/>
@@ -91,7 +94,7 @@ export const Cart = (props) => {
           <p> Subtotal: ${totalAmount} </p>
           <button onClick={() => navigate("/shop")}> Continue Shopping </button>
           <button id="check" onClick={() => {
-              fetchOrder();
+              //fetchOrder();
               checkout();
               navigate("/checkout");
             }}
