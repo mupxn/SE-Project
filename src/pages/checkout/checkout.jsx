@@ -13,7 +13,7 @@ export const Checkout = () => {
       </div>
       <input type="file" name='image'/>
 
-      <button onClick={handleApi}>Submit</button>
+      <button>Submit</button>
     </div>
     
   )

@@ -77,10 +77,6 @@ export default function SignInSide(props) {
   });
   };
 
-  console.log("yes" + props.UserID);
-  console.log(td);
-  setSec(td);
-
 
 
 
