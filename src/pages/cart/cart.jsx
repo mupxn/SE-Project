@@ -10,15 +10,13 @@ import { Product } from "../shop/product";
 
 
 export const Cart = (props) => {
-  // const setSec = (id) => {
-  //   props.setUserID(id);
-  // }
-  //setSec(11);
+
   console.log(props.UserID)
   const { cartItems, getTotalCartAmount, checkout } = useContext(ShopContext);
   const totalAmount = getTotalCartAmount();
   const navigate = useNavigate();
-  let orderid; // Declare the variable outside the fetch method
+  let orderid;
+  
 
 
   function fetchOrder() {
@@ -38,43 +36,14 @@ export const Cart = (props) => {
       })
       .then(response => response.json())
       .then(data => {
-        orderid =
+        orderid = data.ORDERID;
+        console.log(orderid);
         console.log('Success:', data);
       })
       .catch((error) => {
         console.error('Error:', error);
       });
   }
-
-  function fetchDetail() {
-
-    const data = {
-      menu_name	: cartItems[PRODUCTS.productName],
-      price	: cartItems[PRODUCTS.price],
-      amount : cartItems[PRODUCTS.id],
-      menuID : "1",
-      orderID	 : orderid
-    };
-
-    
-    fetch('http://localhost:3333/order_detail', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Success:', data);
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
-  }
-
-  console.log(totalAmount[0]);
-  console.log(totalAmount[1]);
 
   return (
     <div className="cart">
@@ -91,7 +60,7 @@ export const Cart = (props) => {
       </div>
       {totalAmount[0] > 0 ? (
         <div className="checkout">
-          <p> Subtotal: ${totalAmount[0]} </p>
+          <p> Subtotal: ฿{totalAmount[0]} </p>
           <button onClick={() => navigate("/shop")}> Continue Shopping </button>
           <button id="check" onClick={() => {
               fetchOrder();

@@ -17,15 +17,16 @@ export const ShopContextProvider = (props) => {
 
   const getTotalCartAmount = () => {
     let totalAmount = 0;
-    var amount;
+    let amount,menuprice;
     for (const item in cartItems) {
       if (cartItems[item] > 0) {
         let itemInfo = PRODUCTS.find((product) => product.id === Number(item));
         totalAmount += cartItems[item] * itemInfo.price;
+        menuprice =  cartItems[item] * itemInfo.price;
         amount = totalAmount / itemInfo.price;
       }
     }
-    return [totalAmount,amount];
+    return [totalAmount,amount,menuprice];
   };
 
   const addToCart = (itemId) => {
