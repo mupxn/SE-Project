@@ -11,7 +11,10 @@ import Divider from '@mui/material/Divider';
 import { Chip } from '@mui/material';
 
 function History() {
-
+  const myStyle5 = {
+    fontFamily: "Sans-Serif",
+    backgroundColor : "#ffee33"
+  };
   const [orderfinish, setorderfinish] = useState([]);
   const myStyle2 = {
     fontFamily: "Sans-Serif",
@@ -49,9 +52,9 @@ function History() {
               return (
                 <div style={myStyle2} >
                   <br></br>
-                  <text style={myStyle2} > OrderID  {val.orderID} </text>
-                  <text style={myStyle2} >amount  {val.amount }</text>
-                  <text style={myStyle2} >TotalPrice  {val.TotalPrice} bath</text>
+                  <b><Chip style={myStyle5} label={val.orderID} ></Chip></b>
+                  <text style={myStyle2} >amount :  {val.amount }</text>
+                  <text style={myStyle2} >TotalPrice : {val.TotalPrice} bath</text>
                   <b><Chip color='primary' label={val.status}  ></Chip></b>
                   
                   <br></br><br></br>
