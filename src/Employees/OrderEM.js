@@ -14,10 +14,9 @@ import AssignmentTurnedInRoundedIcon from '@mui/icons-material/AssignmentTurnedI
 import KeyboardDoubleArrowRightRoundedIcon from '@mui/icons-material/KeyboardDoubleArrowRightRounded';
 import { Chip } from '@mui/material';
 import Dropdown from 'react-bootstrap/Dropdown';
-
+import Grid from '@mui/material/Grid';
 import Badge from '@mui/material/Badge';
 import CircularProgress from '@mui/material/CircularProgress';
-import Box from '@mui/material/Box';
 
 import IconButton from '@mui/material/IconButton';
 import ListAltIcon from '@mui/icons-material/ListAlt';
@@ -25,8 +24,9 @@ import ListAltIcon from '@mui/icons-material/ListAlt';
 import { useState } from "react";
 import Axios from "axios";
 import React from 'react';
-import { Margin } from '@mui/icons-material';
-
+import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
 
 
 function OrderEM() {
@@ -39,7 +39,6 @@ function OrderEM() {
   const [status, setStatus] = useState("");
   const [newstatus, setNewStatus] = useState( );
   const [orderdetail, setorderdetail] = useState([]);
-  
 
 
   const myStyle1 = {
@@ -51,6 +50,7 @@ function OrderEM() {
   const myStyle2 = {
     fontFamily: "Sans-Serif",
     padding : "40px"
+    
   };
   const myStyle3 = {
     fontFamily: "Sans-Serif",
@@ -99,12 +99,11 @@ function OrderEM() {
     //     );
         
     // })
-    const Orderdetail = (id) => {
-      Axios.get("http://localhost:3333/orderdetail", {orderID: id}).then((response) => {
-        setorderdetail(response.data);
-          
-      });
-    };
+    
+    Axios.get("http://localhost:3333/orderdetail").then((response) => {
+      setorderdetail(response.data);
+    });
+    
     Axios.get("http://localhost:3333/orderalert").then((response) => {
       setorderalert(response.data);
     });
@@ -141,72 +140,49 @@ function OrderEM() {
           </Nav>
         </Container>
       </Navbar>
-      
-          {/* ดึงorder */}
+      {/* <Grid container spacing={0}>
+        <Grid xs={10} md={6}> */}
+           {/* ดึงorder */}
           
 
-            {order.map((val) => {
-              return (
-                <div style={myStyle2} >
-                  <br></br>
-                  <text style={myStyle2} > OrderID : {val.orderID} </text>
-                  <text style={myStyle2} >amount : {val.amount }</text>
-                  <text style={myStyle2} >TotalPrice : {val.TotalPrice} bath</text>
-                  
-                  {/* <OrderDetails /> */}
-                  {/* รายละเอียดสินค้า */}
-                  <IconButton color='success'
-                  onClick={() => {Orderdetail(val.orderID)}} >
-                  <ListAltIcon/>
-                  </IconButton>
-
-                  {/* <Dropdown>
-                  <Dropdown.Toggle variant="success" id="dropdown-basic">
-                  <ListAltIcon/>
-                  </Dropdown.Toggle>
-
-                  <Dropdown.Menu>
-                    <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                    <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                    <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown> */}
-
-                 <text style={{padding:"30px"}} >
-                 <b><Chip color='success' label={val.status} ></Chip></b>
-                 </text>
-                
-                   
-                 <text style={myStyle1} fontSize={10} size={10} >
-                    <CircularProgress size={10}/>  &nbsp;
-                    กำลังเตรียม
-                  </text> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-
-                  {/* ปุ่มอัพเดท */}
-                  <button className="btn btn-warning btn-sm " 
-                  onClick={() => {updateStatus(val.orderID)}}>เสร็จสิ้น</button>
-                  <Divider size="10px"></Divider>
-                  </div>
-                  
-                );
-                
-            })}
-              
+            {/* </Grid> */}
+            {/* <Grid xs={10} md={6}> */}
               {orderdetail.map((val) => {
                     return (
                       <div style={myStyle2} >
-                        <br></br>
-                        <text style={myStyle2} > {val.menu_name} </text>
-                        <text style={myStyle2} >price : {val.price } bath</text>
-                        <text style={myStyle2} > amount: {val.amount}</text>
-                        <Divider size="10px"></Divider>
-
-                        </div>
                         
-                      );
-                      
+                        <text style={myStyle2} > OrderID: {val.orderID}</text>
+                        <text style={myStyle2} > Total Price : {val.TotalPrice } bath</text>
+                        <br></br><br></br>
+                        <text style={myStyle2} > {val.detail} </text>
+                        <br></br><br></br>
+                        <text style={{padding:"30px"}} >
+                          <b><Chip color='success' label={val.status} ></Chip></b>
+                          </text>
+                
+                   
+                          <text style={myStyle1} fontSize={10} size={10} >
+                              <CircularProgress size={10}/>  &nbsp;
+                              กำลังเตรียม
+                            </text> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+                            {/* ปุ่มอัพเดท */}
+                            <button className="btn btn-warning btn-sm " 
+                            onClick={() => {updateStatus(val.orderID)}}>เสร็จสิ้น</button>
+                            <Divider size="10px"></Divider>
+                            </div>
+                                );
+                                
                     })}
+            {/* </Grid>
+          </Grid> */}
+         
+          
+
+            
+              
+              
             
          
     </>
