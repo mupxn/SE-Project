@@ -83,16 +83,7 @@ export default function Chart() {
           />
         </LineChart>
       </ResponsiveContainer>
-      {datastatic.map((val) => {
-                    return (
-                      <div style={myStyle2} >
-                        <text style={myStyle2} > Menu: {val.menu_name}</text>
-                        <text style={myStyle2} > amount : {val.amount } </text>
-                        <br></br><br></br>
-                            </div>
-                        );
-                                
-                    })}
+     
     </React.Fragment>
     
   );
