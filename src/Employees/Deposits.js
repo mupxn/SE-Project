@@ -10,7 +10,7 @@ function preventDefault(event) {
 }
 
 export default function Deposits() {
-  const currentDate = new Date();
+const currentDate = new Date();
 const month = currentDate.toLocaleString('default', { month: 'long' });
 const year = currentDate.getFullYear();
 const formattedDate = `${month} ${year}`; // ผลลัพธ์เช่น '11 เมษายน 2566'
