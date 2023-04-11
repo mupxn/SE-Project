@@ -24,14 +24,9 @@ const bg = {
 };
 
 function OrderEM() {
-  const [user, setUser] = useState([]);
-  const [menu, setMenu] = useState([]);
   const [order, setOrder] = useState([]);
   const [orderalert, setorderalert] = useState([]);
-
-
   const [status, setStatus] = useState("");
-  const [newstatus, setNewStatus] = useState( );
   const [orderdetail, setorderdetail] = useState([]);
 
 
@@ -83,21 +78,6 @@ function OrderEM() {
         }
       );
     };
-
-    // orderdetail.map((val) => {
-    //   return val.orderID == id (
-    //     <div style={myStyle2} >
-    //       <br></br>
-    //       <text style={myStyle2} > {val.menu_name} </text>
-    //       <text style={myStyle2} >price : {val.price } bath</text>
-    //       <text style={myStyle2} > amount: {val.amount}</text>
-    //       <Divider size="10px"></Divider>
-
-    //       </div>
-          
-    //     );
-        
-    // })
     
     Axios.get("http://localhost:3333/orderdetail").then((response) => {
       setorderdetail(response.data);
@@ -141,13 +121,8 @@ function OrderEM() {
           </Nav>
         </Container>
       </Navbar>
-      {/* <Grid container spacing={0}>
-        <Grid xs={10} md={6}> */}
            {/* ดึงorder */}
-          
-
-            {/* </Grid> */}
-            {/* <Grid xs={10} md={6}> */}
+        
             
               {orderdetail.map((val) => {
                     return (
@@ -176,8 +151,8 @@ function OrderEM() {
                                 );
                                 
                     })}
-            {/* </Grid>
-          </Grid> */}
+                    
+
          
          <div  style={bg}></div>
     
@@ -197,15 +172,6 @@ export default OrderEM;
 
 
 
-                  
-{/*                                      
-                  <Chip icon={<HourglassTopRoundedIcon/>}  label="รอยืนยันคำสั่งซื้อ"  />
-                  <KeyboardDoubleArrowRightRoundedIcon/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <Chip icon={<InventoryRoundedIcon  />} label="ยืนยันคำสั่งซื้อ"  />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <KeyboardDoubleArrowRightRoundedIcon /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <Chip icon={<LocalDiningRoundedIcon />} label="กำลังเตรียม" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <KeyboardDoubleArrowRightRoundedIcon/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <Chip icon={<AssignmentTurnedInRoundedIcon />} label="เสร็จสิ้น" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                   */}
+
                   
                     
