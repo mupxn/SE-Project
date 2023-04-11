@@ -50,11 +50,12 @@ function History() {
     </div>
     {orderfinish.map((val) => {
               return (
-                <div style={myStyle2} >
-                  <br></br>
-                  <b><Chip style={myStyle5} label={val.orderID} ></Chip></b>
-                  <text style={myStyle2} >amount :  {val.amount }</text>
-                  <text style={myStyle2} >TotalPrice : {val.TotalPrice} bath</text>
+                  <div style={myStyle2} >
+                        <b><Chip style={myStyle5} label={val.orderID} ></Chip></b>
+                        <text style={myStyle2} > Total Price : {val.TotalPrice } bath</text>
+                        <br></br><br></br>
+                        <text style={myStyle2} > {val.detail} </text>
+                        <br></br><br></br>
                   <b><Chip color='primary' label={val.status}  ></Chip></b>
                   
                   <br></br><br></br>
