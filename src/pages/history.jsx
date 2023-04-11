@@ -43,7 +43,7 @@ export const HistoryCus = (props) => {
                 <div style={myStyle3} >
                 <br></br>
                 <text style={myStyle2} >OrderID  {val.orderID} </text>
-                <text style={myStyle2} >{}</text>
+                <text style={myStyle2} >{val.date}</text>
                 <text style={myStyle2} >amount  {val.amount }</text>
                 <text style={myStyle2} >TotalPrice  {val.TotalPrice} bath</text>
                 <b><Chip color='primary' label={val.status}  ></Chip></b>
