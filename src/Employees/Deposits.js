@@ -4,11 +4,17 @@ import Typography from '@mui/material/Typography';
 import { useState } from "react";
 import Axios from "axios";
 
+
 function preventDefault(event) {
   event.preventDefault();
 }
 
 export default function Deposits() {
+  const currentDate = new Date();
+const month = currentDate.toLocaleString('default', { month: 'long' });
+const year = currentDate.getFullYear();
+const formattedDate = `${month} ${year}`; // ผลลัพธ์เช่น '11 เมษายน 2566'
+
     const myStyle2 = {
         fontFamily: "Sans-Serif",
         padding : "40px"
@@ -37,7 +43,7 @@ export default function Deposits() {
        })}
       
       <Typography color="text.secondary" sx={{ flex: 1 }} >
-      {Date(Date.now())}
+      {formattedDate}
       </Typography>
     </React.Fragment>
     </>
