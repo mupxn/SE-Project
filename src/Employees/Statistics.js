@@ -5,47 +5,31 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
-
-const theme = createTheme();
+import Chart from './Chart';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
+import Deposits from './Deposits';
+import { useState } from "react";
+import Axios from "axios";
 
 export default function Album() {
-    /*********************************** */
-    useEffect(() =>{
-        const token = localStorage.getItem('token')
-        fetch("http://localhost:3333/authen", {
-            method: "POST", // or 'PUT'
-            headers: {
-                "Content-Type": "application/json",
-                'Authorization': 'Bearer '+token 
-            },
-            })
-            .then((response) => response.json())
-            .then((data) => {
-                if(data.status=='ok'){
-                    //เรียกไปหน้าสถิติ
-                    //alert('authen success')
-                }
-                else{
-                    //กลับไปหน้าlogin
-                    alert('authen failed')
-                    localStorage.removeItem('token');
-                    window.location = '/loginem'
-                }
-            
-        
-            })
-            .catch((error) => {
-                console.error("Error:", error);
-            });
-    },[])
-
+  const myStyle2 = {
+    fontFamily: "Sans-Serif",
+    padding : "40px"
+  };
+  const [datastatic, setstatic] = useState([]);
+  Axios.get("http://localhost:3333/static").then((response) => {
+    setstatic(response.data);
+    });
+   
     //logout//
     const handleLogout = (event) => {
         event.preventDefault();
         localStorage.removeItem('token');
         window.location = '/orderem'
     }
+    let date = new Date(Date.now());
+
   return (
     <>
        <Navbar bg="dark" variant="dark" sticky="top"expand="md" >
@@ -61,6 +45,54 @@ export default function Album() {
           
         </Container>
       </Navbar>
+       
+
+      <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+            <Grid container spacing={3}>
+              {/* Chart */}
+              <Grid item xs={12} md={8} lg={9}>
+                <Paper
+                  sx={{
+                    p: 2,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    height: 240,
+                  }}
+                >
+                  <Chart />
+                </Paper>
+              </Grid>
+              {/* Recent Deposits */}
+              <Grid item xs={12} md={4} lg={3}>
+                <Paper
+                  sx={{
+                    p: 2,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    height: 240,
+                  }}
+                >
+                  <Deposits />
+                </Paper>
+              </Grid>
+              {/* Recent Orders */}
+              <Grid item xs={12}>
+                <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
+                {datastatic.map((val) => {
+                    return (
+                      <div style={myStyle2} >
+                        <text style={myStyle2} > Menu: {val.menu_name}</text>
+                        <text style={myStyle2} > amount : {val.amount } </text>
+                        <br></br><br></br>
+                            </div>
+                        );
+                                
+                    })}
+                </Paper>
+              </Grid>
+            </Grid>
+          
+          </Container>
       
     </>
   );
