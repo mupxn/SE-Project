@@ -17,6 +17,15 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import p7 from './p7.png';
+
+const bg = {
+  background: `url(${p7})`,
+  backgroundRepeat: 'repeat',
+  backgroundSize: '1000px',
+  backgroundPosition: 'center',
+  
+};
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
 }
@@ -25,6 +34,9 @@ export default function Album() {
   const myStyle2 = {
     fontFamily: "sans-serif",
     fontSize :"17px"
+  };
+  const myStyle3 = {
+    padding : "40px"
   };
   const myStyle = {
     fontFamily: "sans-serif",
@@ -44,6 +56,7 @@ export default function Album() {
   
   return (
     <>
+     <div style={bg}>
        <Navbar bg="dark" variant="dark" sticky="top"expand="md" >
         <Container>
           <Navbar.Brand >
@@ -59,22 +72,8 @@ export default function Album() {
       </Navbar>
        
 
-      <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+      <Container  style={myStyle3}  maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={3}>
-              {/* Chart */}
-              {/* <Grid item xs={12} md={8} lg={9}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: 240,
-                  }}
-                >
-                  <Chart />
-                </Paper>
-              </Grid> */}
-              {/* Recent Deposits */}
               <Grid item xs={12} md={4} lg={3}>
                 <Paper
                   sx={{
@@ -105,16 +104,17 @@ export default function Album() {
               <TableCell  align='center'>{row.menu_name}</TableCell>
               <TableCell align='center'>{row.amount}</TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-          
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+                
               </Grid>
             </Grid>
             
           </Container>
-      
+          <div  style={myStyle3}  ></div>
+      </div>
     </>
   );
 }
