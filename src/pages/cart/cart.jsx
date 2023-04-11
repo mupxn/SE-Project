@@ -44,7 +44,7 @@ export const Cart = (props) => {
       .then(data => {
         secOnce(data.ORDERID);
         let test = props.orderid;
-        console.log(test);
+        //console.log(test);
         console.log('Success:', data);
       })
       .catch((error) => {

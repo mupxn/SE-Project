@@ -38,7 +38,7 @@ export const Shop = (props) => {
   }, []);
 
 
-  console.log(props.UserID)
+  //console.log(props.UserID)
 
   return (
     

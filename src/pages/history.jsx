@@ -29,7 +29,7 @@ export const HistoryCus = (props) => {
     console.error(error);
   });
 
-  console.log(orderhis);
+  //console.log(orderhis);
 
   
 

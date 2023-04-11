@@ -16,7 +16,7 @@ export const CartItem = (props) => {
    let amount = [];
    let menuID = [];
    var Data = [name,Price,amount,menuID];
-   console.log(props.orderid);
+   //console.log(props.orderid);
    
    function sendDataToBackend() {
    const promises = [];

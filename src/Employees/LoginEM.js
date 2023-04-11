@@ -41,7 +41,7 @@ export default function SignInSide() {
     .then((data) => {
         if(data.status=='ok'){
             localStorage.setItem('token',data.token)
-            console.log(data.token)
+           // console.log(data.token)
             window.location = '/Statistics'
             alert('login success')
         }
