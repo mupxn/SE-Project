@@ -18,16 +18,18 @@ import Grid from '@mui/material/Grid';
 import Badge from '@mui/material/Badge';
 import CircularProgress from '@mui/material/CircularProgress';
 
-import IconButton from '@mui/material/IconButton';
-import ListAltIcon from '@mui/icons-material/ListAlt';
-
 import { useState } from "react";
 import Axios from "axios";
 import React from 'react';
-import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
+import p7 from './p7.png';
 
+const bg = {
+  background: `url(${p7})`,
+  backgroundRepeat: 'repeat',
+  backgroundSize: '1000px',
+  backgroundPosition: 'center',
+  
+};
 
 function OrderEM() {
   const [user, setUser] = useState([]);
@@ -47,6 +49,7 @@ function OrderEM() {
     backgroundColor : "lightblue"
     
   };
+ 
   const myStyle2 = {
     fontFamily: "Sans-Serif",
     padding : "40px"
@@ -57,7 +60,11 @@ function OrderEM() {
     fontSize :"40px"
   };
   const myStyle4 = {
-    backgroundColor : "#357a38"
+    backgroundColor : "#99dfff"
+  };
+  const myStyle5 = {
+    fontFamily: "Sans-Serif",
+    backgroundColor : "#ffee33"
   };
 
   Axios.get("http://localhost:3333/order").then((response) => {
@@ -111,8 +118,10 @@ function OrderEM() {
 
     
   return (
-    <>
-
+    < >
+    
+      
+   
       <Navbar style={myStyle4} sticky="top"expand="md" >
         <Container>
           <Navbar.Brand >
@@ -147,11 +156,11 @@ function OrderEM() {
 
             {/* </Grid> */}
             {/* <Grid xs={10} md={6}> */}
+            
               {orderdetail.map((val) => {
                     return (
                       <div style={myStyle2} >
-                        
-                        <text style={myStyle2} > OrderID: {val.orderID}</text>
+                        <b><Chip style={myStyle5} label={val.orderID} ></Chip></b>
                         <text style={myStyle2} > Total Price : {val.TotalPrice } bath</text>
                         <br></br><br></br>
                         <text style={myStyle2} > {val.detail} </text>
@@ -178,13 +187,14 @@ function OrderEM() {
             {/* </Grid>
           </Grid> */}
          
-          
+         <div  style={bg}></div>
+    
 
             
               
               
             
-         
+        
     </>
     
     
