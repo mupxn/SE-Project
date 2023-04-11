@@ -18,7 +18,7 @@ function AlertOrder() {
     padding : "40px"
   };
   const myStyle4 = {
-    backgroundColor : "#f50057"
+    backgroundColor : "#ff99bb"
   };
   const myStyle3 = {
     fontFamily: "Sans-Serif",
