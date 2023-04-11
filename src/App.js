@@ -56,7 +56,7 @@ function App() {
         <Router>
           <Routes>
             <Route path="/shop" element={<Shop UserID = {UserID} setUserID = {setUserID} orderid = {orderid} setorderid = {setorderid}/>} />
-            <Route path="/history-customer" element={<HistoryCus UserID = {UserID} setUserID = {setUserID} orderid = {orderid} setorderid = {setorderid}/>} />
+            <Route path="/history-customer" element={<HistoryCus UserID = {UserID} setUserID = {setUserID}/>} />
             <Route path="/cart"  element={<Cart UserID = {UserID} setUserID = {setUserID} orderid = {orderid} setorderid = {setorderid}/>} />
             <Route path="/checkout" element={<Checkout UserID = {UserID} setUserID = {setUserID} orderid = {orderid} setorderid = {setorderid}/>} />
           </Routes>
