@@ -24,11 +24,12 @@ export const HistoryCus = (props) => {
   .then(response => response.json())
   .then(data => {
     setorderhis(data);
-    console.log(data);
   })
   .catch(error => {
     console.error(error);
   });
+
+
   
 
   return (
@@ -42,7 +43,7 @@ export const HistoryCus = (props) => {
                 <div style={myStyle3} >
                 <br></br>
                 <text style={myStyle2} >OrderID  {val.orderID} </text>
-                <text style={myStyle2} >date  {val.date }</text>
+                <text style={myStyle2} >{}</text>
                 <text style={myStyle2} >amount  {val.amount }</text>
                 <text style={myStyle2} >TotalPrice  {val.TotalPrice} bath</text>
                 <b><Chip color='primary' label={val.status}  ></Chip></b>
