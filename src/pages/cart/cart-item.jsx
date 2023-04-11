@@ -61,7 +61,6 @@ export const CartItem = (props) => {
    Price.push(price);
    amount.push(cartItems[id]);
    menuID.push(id);
-   console.log(Data);
    sendDataToBackend();
    
 

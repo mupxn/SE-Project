@@ -2,12 +2,23 @@ import React from "react";
 import { Navbar } from "../components/navbar";
 import { useState, useEffect } from 'react';
 import axios from "axios";
+import Divider from '@mui/material/Divider';
+import { Chip } from '@mui/material';
 
 export const HistoryCus = (props) => {
 
 
     const [orderhis, setorderhis] = useState([]);
     var userID = props.UserId;
+
+    const myStyle2 = {
+      fontFamily: "Sans-Serif",
+      padding : "20px"
+    };
+    const myStyle3 = {
+      fontFamily: "Sans-Serif",
+      fontSize :"20px"
+    };
 
   fetch('http://localhost:3333/history')
   .then(response => response.json())
@@ -28,13 +39,16 @@ export const HistoryCus = (props) => {
       <div>
       {orderhis.map((val) => {
               return (
-                <div >
-                  <br></br>
-                  <text> OrderID  {val.orderID} </text>
-                  <text>amount  {val.amount }</text>
-                  <text >TotalPrice  {val.TotalPrice} bath</text>
-                  <br></br><br></br>
-                  </div>
+                <div style={myStyle3} >
+                <br></br>
+                <text style={myStyle2} >OrderID  {val.orderID} </text>
+                <text style={myStyle2} >date  {val.date }</text>
+                <text style={myStyle2} >amount  {val.amount }</text>
+                <text style={myStyle2} >TotalPrice  {val.TotalPrice} bath</text>
+                <b><Chip color='primary' label={val.status}  ></Chip></b>
+                <br></br><br></br>
+                <Divider size="10px"></Divider>
+                </div>
                 );
             })}
 

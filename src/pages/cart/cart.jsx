@@ -52,8 +52,6 @@ export const Cart = (props) => {
       });
   }
 
-  fetchOrder();
-
   return (
     <div className="cart">
       <Navbar/>
