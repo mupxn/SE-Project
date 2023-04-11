@@ -4,8 +4,6 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Chart from './Chart';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Deposits from './Deposits';
@@ -26,9 +24,7 @@ const bg = {
   backgroundPosition: 'center',
   
 };
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
+
 export default function Album() {
   
   const myStyle2 = {
@@ -73,6 +69,7 @@ export default function Album() {
        
 
       <Container  style={myStyle3}  maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+        {/* ยอดเงิน*/}
             <Grid container spacing={3}>
               <Grid item xs={12} md={4} lg={3}>
                 <Paper
@@ -88,6 +85,8 @@ export default function Album() {
               </Grid>
               <Grid item xs={6}>
                 <TableContainer component={Paper}>
+      
+      {/* ตารางรวมเมนูที่ถูกสั่ง*/}
       <Table sx={{ minWidth: 500 }} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -96,6 +95,7 @@ export default function Album() {
             </TableRow>
         </TableHead>
         <TableBody>
+           
           {datastatic.map((row) => (
             <TableRow
               key={row.name}
