@@ -13,6 +13,10 @@ import { Chip } from '@mui/material';
 function AlertOrder() {
   const [order, setOrder] = useState([]);
   const [status, setStatus] = useState("");
+  const myStyle5 = {
+    fontFamily: "Sans-Serif",
+    backgroundColor : "#ffee33"
+  };
   const myStyle2 = {
     fontFamily: "Sans-Serif",
     padding : "40px"
@@ -103,7 +107,7 @@ function AlertOrder() {
               return (
                 <div style={myStyle2} >
                   <br></br>
-                  <text style={myStyle2} > OrderID: {val.orderID} </text>
+                  <b><Chip style={myStyle5} label={val.orderID} ></Chip></b>
                   <text style={myStyle2} >amount : {val.amount }</text>
                   <text style={myStyle2} >TotalPrice: {val.TotalPrice}</text>
                   <text style={{padding:"30px"}} >
