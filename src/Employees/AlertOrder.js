@@ -106,11 +106,12 @@ function AlertOrder() {
           {order.map((val) => {
               return (
                 <div style={myStyle2} >
-                  <br></br>
-                  <b><Chip style={myStyle5} label={val.orderID} ></Chip></b>
-                  <text style={myStyle2} >amount : {val.amount }</text>
-                  <text style={myStyle2} >TotalPrice: {val.TotalPrice}</text>
-                  <text style={{padding:"30px"}} >
+                        <b><Chip style={myStyle5} label={val.orderID} ></Chip></b>
+                        <text style={myStyle2} > Total Price : {val.TotalPrice } bath</text>
+                        <br></br><br></br>
+                        <text > {val.detail} </text>
+                        <br></br><br></br>
+                        <text style={{padding:"30px"}} >
                  <b><Chip style={myStyle} label={val.status}  ></Chip></b>
                  </text>
                  <b><button type="button" class="btn btn-success" 
